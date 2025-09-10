@@ -1,0 +1,5 @@
+---
+const {nameButton, widthButton} = Astro.props
+---
+
+<a href="#" class={`bg-transparent max-w-[364px] w-${widthButton ? widthButton : 'full'} h-fit py-5 text-white text-center font-[500] border border-gray-400 rounded-md transition duration-300 hover:bg-gray-300 hover:text-black`}>{nameButton}</a>

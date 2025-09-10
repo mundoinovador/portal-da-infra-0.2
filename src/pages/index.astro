@@ -1,11 +1,153 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Base from "@layouts/Base.astro"
+import ButtonLink from "@components/ButtonLink.astro"
+import ButtonLinkSecond from "@components/ButtonLinkSecond.astro"
+import Header from "@components/Header.astro"
+import CardCategoria from "@components/CardCategoria.astro"
+import Clients from "@components/Clients.astro"
+import { FormContact } from "@components/react/FormContact"
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<script>
+	window.addEventListener('resize', () => {
+		const hero:any = document.querySelector('.hero-section')
+
+		if (innerWidth >= 900) {
+			console.log("chegou")
+		
+			window.addEventListener('scroll', () => {
+				const scrollY = window.scrollY
+				let size = 102 + scrollY / 6
+		
+				if (size < 102) {
+					size = 102
+				}
+
+				hero.style.backgroundSize = `${size}%`
+			})
+		} else {
+			window.addEventListener('scroll', () => {
+				const scrollY = window.scrollY
+				let size = 102 + scrollY / 6
+		
+				if (size < 102) {
+					size = 102
+				}
+
+				hero.style.backgroundSize = `cover`
+		})
+	}})
+</script>
+
+<Base title="Home">
+	<section class="hero-section flex flex-col bg-[url('../assets/bg-hero.png')] bg-cover bg-center bg-no-repeat h-[75vh] bg-black transition-all duration-300">
+		<Header />
+
+		<div class="flex flex-col w-full h-full px-[20%] py-26">
+			<h1 class="text-center text-white font-[500] text-2xl mb-4">Portal da infra</h1>
+
+			<p class="text-center mb-14 text-gray-300">
+				Conforto para o seu dia a dia, estilo para <br>
+				o seu escritório.
+			</p>
+
+			<div class="w-full h-full flex flex-col gap-6 items-center">
+				<ButtonLink nameButton="Nossos Produtos" />
+				<ButtonLink nameButton="Falar com consultor" />
+			</div>
+		</div>
+	</section>
+
+	<section class="flex flex-col w-full px-[5%] py-18">
+		<div class="flex flex-col w-full px-[10%]">
+			<h2 class="text-2xl mb-4">Categorias de produtos</h2>
+
+			<p class="text-gray-800 mb-24">
+				Conheça os tipos de produtos e serviços que oferecemos
+				<br>
+				aqui no portal da infra
+			</p>
+		</div>
+
+		<div class="flex flex-wrap gap-24 justify-center">
+			<CardCategoria titleCard="Estação de call center" imgPath="src/assets/categorias/call-center2.png">
+				<p>
+					Veja nossas estações de call center montadas,
+					<br>
+					conheça nossos modelos e se precisar de ajuda fale com o consultor
+				</p>
+			</CardCategoria>
+			
+			<CardCategoria titleCard="Cadeiras" imgPath="src/assets/categorias/cadeiras.png">
+				<p>
+					Veja nossas coleção de cadeiras com muitos tipos diferentes,
+					<br>
+					conheça nossos modelos e se precisar negociar um bom custo benefício, fale com um consultor
+				</p>
+			</CardCategoria>
+
+			<CardCategoria titleCard="Mesas" imgPath="src/assets/categorias/mesas.png">
+				<p>
+					Veja nossas mesas que também trazemos uma variedade de opções,
+					<br>
+					temos mesas diretor, mesas executivas, mesas em L e etc.
+				</p>
+			</CardCategoria>
+
+			<CardCategoria titleCard="Armários" imgPath="src/assets/categorias/armarios.png">
+				<p>
+					Veja nossas estações de call center montadas,
+					<br>
+					conheça nossos modelos e se precisar de ajuda fale com o consultor
+				</p>
+			</CardCategoria>
+		</div>
+	</section>
+
+	<section class="flex flex-col bg-black px-[5%] py-[5rem] items-center">
+		<h2 class="text-white text-lg mb-4">Sobre nós</h2>
+		<p class="text-gray-300 text-center text-sm mb-18">
+			Nós do Portal da Infra já atendemos mais de 18.000
+			work stations
+			<br>
+			em todo território nacional. Conheça mais da nossa tragetória até aqui.
+		</p>
+
+		<ButtonLinkSecond nameButton="Conheça aqui" />
+	</section>
+
+	<section class="flex flex-col items-center mb-32">
+		<h2 class="text-2xl max-w-[60%] text-center font-semibold py-[4rem]">Clientes que confiam no nosso trabalho</h2>
+
+		<div class="flex flex-wrap justify-center gap-[1.8rem] px-[10%] mb-14">
+			<Clients nameClient="Portal da Infra" logoClient="/favicon.png" />
+			<Clients nameClient="Google" logoClient="https://agenciapnz.com/wp-content/uploads/Logo-Google-G.png" />
+			<Clients nameClient="Instagram" logoClient="https://img.freepik.com/psd-premium/instagram-logotipo_971166-164497.jpg?semt=ais_hybrid&w=740&q=80" />
+			<Clients nameClient="DiamondLog" logoClient="https://media.licdn.com/dms/image/v2/C4E0BAQGhI500M97BXQ/company-logo_200_200/company-logo_200_200/0/1655317026041/diamond_log_logo?e=2147483647&v=beta&t=XlIxEo7q8Y6M7i-lQmrr3igSQjkWPcBIP6Dbsr2Ypto" />
+			<Clients nameClient="Netflix" logoClient="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/15844974/netflixlogo.0.0.1466448626.png?quality=90&strip=all&crop=1.2535702951444%2C0%2C97.492859409711%2C100&w=2400" />
+		</div>
+
+		<p class="text-center mb-12">
+			Essas e mais de 5 mil outras empresas tiveram ótimos resultados.
+			<br>
+			Busque sempre o melhor para viver melhor
+		</p>
+
+		<div class="flex flex-col gap-4 px-[15%] w-full items-center">
+			<ButtonLink nameButton="Falar com um consultor" widthButton="364px" />
+			<ButtonLink nameButton="Ver mais clientes" widthButton="364px" />
+		</div>
+	</section>
+
+	<section class="flex flex-col items-center mb-24 w-full">
+		<h2 class="text-center text-2xl font-semibold mb-4">Nossos Contatos</h2>
+		<p class="text-center text-md mb-14">
+			Entre em contato, vamos entender sua
+			<br>
+			necessidade e propor o melhor trabalho
+			para sua demanda
+		</p>
+
+		<FormContact client:load />
+	</section>
+</Base>
