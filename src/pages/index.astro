@@ -9,12 +9,24 @@ import { FormContact } from "@components/react/FormContact"
 ---
 
 <script>
-	window.addEventListener('resize', () => {
+	function effect_hero() {
 		const hero:any = document.querySelector('.hero-section')
-
-		if (innerWidth >= 900) {
-			console.log("chegou")
 		
+		if (innerWidth >= 900 && innerWidth < 1020) {		
+			hero.style.backgroundSize = `150%`
+			window.addEventListener('scroll', () => {
+				const scrollY = window.scrollY
+				let size = 150 + scrollY / 6
+		
+				if (size <= 110) {
+					size = 110
+				}
+
+				hero.style.backgroundSize = `${size}%`
+			})
+
+		} else if (innerWidth >= 1021) {
+			hero.style.backgroundSize = `102%`
 			window.addEventListener('scroll', () => {
 				const scrollY = window.scrollY
 				let size = 102 + scrollY / 6
@@ -26,17 +38,13 @@ import { FormContact } from "@components/react/FormContact"
 				hero.style.backgroundSize = `${size}%`
 			})
 		} else {
-			window.addEventListener('scroll', () => {
-				const scrollY = window.scrollY
-				let size = 102 + scrollY / 6
-		
-				if (size < 102) {
-					size = 102
-				}
+			hero.style.backgroundSize = `cover`
+		}
+	}
 
-				hero.style.backgroundSize = `cover`
-		})
-	}})
+	effect_hero()
+	
+	window.addEventListener('resize', () => effect_hero())
 </script>
 
 <Base title="Home">
@@ -46,9 +54,10 @@ import { FormContact } from "@components/react/FormContact"
 		<div class="flex flex-col w-full h-full px-[20%] py-26">
 			<h1 class="text-center text-white font-[500] text-2xl mb-4">Portal da infra</h1>
 
-			<p class="text-center mb-14 text-gray-300">
-				Conforto para o seu dia a dia, estilo para <br>
-				o seu escritório.
+			<p class="text-center mb-14 text-gray-300 text-sm">
+				Conforto para o seu dia a dia, estilo
+				<br>
+				para o seu escritório.
 			</p>
 
 			<div class="w-full h-full flex flex-col gap-6 items-center">
@@ -59,7 +68,7 @@ import { FormContact } from "@components/react/FormContact"
 	</section>
 
 	<section class="flex flex-col w-full px-[5%] py-18">
-		<div class="flex flex-col w-full px-[10%]">
+		<div class="flex flex-col w-full md:px-[10%]">
 			<h2 class="text-2xl mb-4">Categorias de produtos</h2>
 
 			<p class="text-gray-800 mb-24">
@@ -71,7 +80,7 @@ import { FormContact } from "@components/react/FormContact"
 
 		<div class="flex flex-wrap gap-24 justify-center">
 			<CardCategoria titleCard="Estação de call center" imgPath="src/assets/categorias/call-center2.png">
-				<p>
+				<p class="text-sm">
 					Veja nossas estações de call center montadas,
 					<br>
 					conheça nossos modelos e se precisar de ajuda fale com o consultor
@@ -79,7 +88,7 @@ import { FormContact } from "@components/react/FormContact"
 			</CardCategoria>
 			
 			<CardCategoria titleCard="Cadeiras" imgPath="src/assets/categorias/cadeiras.png">
-				<p>
+				<p class="text-sm">
 					Veja nossas coleção de cadeiras com muitos tipos diferentes,
 					<br>
 					conheça nossos modelos e se precisar negociar um bom custo benefício, fale com um consultor
@@ -87,7 +96,7 @@ import { FormContact } from "@components/react/FormContact"
 			</CardCategoria>
 
 			<CardCategoria titleCard="Mesas" imgPath="src/assets/categorias/mesas.png">
-				<p>
+				<p class="text-sm">
 					Veja nossas mesas que também trazemos uma variedade de opções,
 					<br>
 					temos mesas diretor, mesas executivas, mesas em L e etc.
@@ -95,7 +104,7 @@ import { FormContact } from "@components/react/FormContact"
 			</CardCategoria>
 
 			<CardCategoria titleCard="Armários" imgPath="src/assets/categorias/armarios.png">
-				<p>
+				<p class="text-sm">
 					Veja nossas estações de call center montadas,
 					<br>
 					conheça nossos modelos e se precisar de ajuda fale com o consultor
@@ -119,7 +128,7 @@ import { FormContact } from "@components/react/FormContact"
 	<section class="flex flex-col items-center mb-32">
 		<h2 class="text-2xl max-w-[60%] text-center font-semibold py-[4rem]">Clientes que confiam no nosso trabalho</h2>
 
-		<div class="flex flex-wrap justify-center gap-[1.8rem] px-[10%] mb-14">
+		<div class="flex flex-wrap justify-center px-[10%] mb-14">
 			<Clients nameClient="Portal da Infra" logoClient="/favicon.png" />
 			<Clients nameClient="Google" logoClient="https://agenciapnz.com/wp-content/uploads/Logo-Google-G.png" />
 			<Clients nameClient="Instagram" logoClient="https://img.freepik.com/psd-premium/instagram-logotipo_971166-164497.jpg?semt=ais_hybrid&w=740&q=80" />
@@ -127,21 +136,28 @@ import { FormContact } from "@components/react/FormContact"
 			<Clients nameClient="Netflix" logoClient="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/15844974/netflixlogo.0.0.1466448626.png?quality=90&strip=all&crop=1.2535702951444%2C0%2C97.492859409711%2C100&w=2400" />
 		</div>
 
-		<p class="text-center mb-12">
-			Essas e mais de 5 mil outras empresas tiveram ótimos resultados.
-			<br>
-			Busque sempre o melhor para viver melhor
-		</p>
+		<div class="px-[5%]">
+			<p class="text-center text-sm mb-12">
+				Essas e mais de 5 mil outras empresas tiveram ótimos resultados.
+				<br>
+				Busque sempre o melhor para viver melhor
+			</p>
+		</div>
 
 		<div class="flex flex-col gap-4 px-[15%] w-full items-center">
-			<ButtonLink nameButton="Falar com um consultor" widthButton="364px" />
-			<ButtonLink nameButton="Ver mais clientes" widthButton="364px" />
+			<div class="bg-button-dark w-[90%] min-w-[240px] sm:w-[70%] md:w-[364px]">
+				<ButtonLink nameButton="Falar com um consultor" widthButton="100%" />
+			</div>
+
+			<div class="bg-button-dark w-[90%] min-w-[240px] sm:w-[70%] md:w-[364px]">
+				<ButtonLink nameButton="Ver mais clientes" widthButton="100%" />
+			</div>
 		</div>
 	</section>
 
 	<section class="flex flex-col items-center mb-24 w-full">
 		<h2 class="text-center text-2xl font-semibold mb-4">Nossos Contatos</h2>
-		<p class="text-center text-md mb-14">
+		<p class="text-center text-sm mb-14">
 			Entre em contato, vamos entender sua
 			<br>
 			necessidade e propor o melhor trabalho
