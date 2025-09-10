@@ -1,5 +1,5 @@
 ---
-const {nameButton, widthButton, colorTextButton} = Astro.props
+const {nameButton, redirectTo, colorTextButton} = Astro.props
 ---
 
-<a href="#" class={`bg-white border border-gray-400 text-center text-sm ${colorTextButton} font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition duration-300 hover:bg-black/80 hover:text-white`}>{nameButton}</a>
+<a href={redirectTo} class={`bg-white border border-gray-400 text-center text-sm ${colorTextButton} font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition duration-300 hover:bg-black/80 hover:text-white`}>{nameButton}</a>

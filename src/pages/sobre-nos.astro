@@ -1,0 +1,23 @@
+---
+import Base from "@layouts/Base.astro";
+import Header from "@components/Header.astro";
+import ButtonLink from "@components/ButtonLink.astro";
+---
+
+<Base>
+    <section class="hero-section flex flex-col bg-[url('../assets/bg-hero.png')] bg-cover bg-center bg-no-repeat h-[60vh] bg-black transition-all duration-300">
+		<Header />
+
+		<div class="flex flex-col w-full h-full px-[20%] py-26">
+			<h1 class="text-center text-white font-[500] text-2xl mb-4">História até aqui</h1>
+
+			<p class="text-center mb-14 text-gray-300 text-sm">
+				Conheça tudo que fizemos até aqui.
+				<br>
+                conheça os desafios superados, as decisões tomadas
+                <br>
+                e oque representamos para uma empresa, aproveite a nossa apresentação..
+			</p>
+		</div>
+	</section>
+</Base>
