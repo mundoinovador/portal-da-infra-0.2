@@ -1,6 +1,6 @@
 function FormContact() {
   return (
-    <form className="flex flex-col w-full gap-4 px-[10%] max-w-[800px] items-center">
+    <form className="flex flex-col w-full gap-4 max-w-[450px] items-center">
       <div className="input-form-container">
         <label htmlFor="nome" className="label-form">
           Nome completo

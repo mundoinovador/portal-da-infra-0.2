@@ -71,7 +71,7 @@ import { FormContact } from "@components/react/FormContact"
 		<div class="flex flex-col w-full md:px-[10%]">
 			<h2 class="text-2xl mb-4">Categorias de produtos</h2>
 
-			<p class="text-gray-800 mb-24">
+			<p class="text-gray-800 text-sm mb-18">
 				Conheça os tipos de produtos e serviços que oferecemos
 				<br>
 				aqui no portal da infra
@@ -81,33 +81,25 @@ import { FormContact } from "@components/react/FormContact"
 		<div class="flex flex-wrap gap-24 justify-center">
 			<CardCategoria titleCard="Estação de call center" imgPath="src/assets/categorias/call-center2.png">
 				<p class="text-sm">
-					Veja nossas estações de call center montadas,
-					<br>
-					conheça nossos modelos e se precisar de ajuda fale com o consultor
+					Veja nossas estações de call center montadas, conheça nossos modelos e se precisar de ajuda fale com o consultor
 				</p>
 			</CardCategoria>
 			
 			<CardCategoria titleCard="Cadeiras" imgPath="src/assets/categorias/cadeiras.png">
 				<p class="text-sm">
-					Veja nossas coleção de cadeiras com muitos tipos diferentes,
-					<br>
-					conheça nossos modelos e se precisar negociar um bom custo benefício, fale com um consultor
+					Veja nossas coleção de cadeiras com muitos tipos diferentes, conheça nossos modelos e se precisar negociar um bom custo benefício, fale com um consultor
 				</p>
 			</CardCategoria>
 
 			<CardCategoria titleCard="Mesas" imgPath="src/assets/categorias/mesas.png">
 				<p class="text-sm">
-					Veja nossas mesas que também trazemos uma variedade de opções,
-					<br>
-					temos mesas diretor, mesas executivas, mesas em L e etc.
+					Veja nossas mesas que também trazemos uma variedade de opções, temos mesas diretor, mesas executivas, mesas em L e etc.
 				</p>
 			</CardCategoria>
 
 			<CardCategoria titleCard="Armários" imgPath="src/assets/categorias/armarios.png">
 				<p class="text-sm">
-					Veja nossas estações de call center montadas,
-					<br>
-					conheça nossos modelos e se precisar de ajuda fale com o consultor
+					Veja nossas estações de call center montadas, conheça nossos modelos e se precisar de ajuda fale com o consultor
 				</p>
 			</CardCategoria>
 		</div>
@@ -115,20 +107,25 @@ import { FormContact } from "@components/react/FormContact"
 
 	<section class="flex flex-col bg-black px-[5%] py-[5rem] items-center">
 		<h2 class="text-white text-lg mb-4">Sobre nós</h2>
-		<p class="text-gray-300 text-center text-sm mb-18">
-			Nós do Portal da Infra já atendemos mais de 18.000
-			work stations
+		<p class="text-gray-300 text-center text-sm mb-14">
+			Nós do Portal da Infra já atendemos mais de
 			<br>
-			em todo território nacional. Conheça mais da nossa tragetória até aqui.
+			18.000,00 work stations em todo território nacional. Conheça mais da nossa tragetória até aqui.
 		</p>
 
 		<ButtonLinkSecond redirectTo="/sobre-nos" nameButton="Conheça aqui" />
 	</section>
 
-	<section class="flex flex-col items-center mb-32">
-		<h2 class="text-2xl max-w-[60%] text-center font-semibold py-[4rem]">Clientes que confiam no nosso trabalho</h2>
+	<section class="flex flex-col items-center mb-26">
+		<h2 class="text-lg max-w-[60%] text-center font-semibold py-[4rem] pb-4">Clientes que confiam no nosso trabalho</h2>
 
-		<div class="flex flex-wrap justify-center px-[10%] mb-14">
+		<div class="px-[5%]">
+			<p class="text-center text-sm mb-8">
+				Essas e mais de 5 mil outras empresas tiveram ótimos resultados. Busque sempre o melhor para viver melhor
+			</p>
+		</div>
+
+		<div class="flex flex-wrap justify-center px-[10%] mb-8">
 			<Clients nameClient="Portal da Infra" logoClient="/favicon.png" />
 			<Clients nameClient="Google" logoClient="https://agenciapnz.com/wp-content/uploads/Logo-Google-G.png" />
 			<Clients nameClient="Instagram" logoClient="https://img.freepik.com/psd-premium/instagram-logotipo_971166-164497.jpg?semt=ais_hybrid&w=740&q=80" />
@@ -136,13 +133,6 @@ import { FormContact } from "@components/react/FormContact"
 			<Clients nameClient="Netflix" logoClient="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/15844974/netflixlogo.0.0.1466448626.png?quality=90&strip=all&crop=1.2535702951444%2C0%2C97.492859409711%2C100&w=2400" />
 		</div>
 
-		<div class="px-[5%]">
-			<p class="text-center text-sm mb-12">
-				Essas e mais de 5 mil outras empresas tiveram ótimos resultados.
-				<br>
-				Busque sempre o melhor para viver melhor
-			</p>
-		</div>
 
 		<div class="flex flex-col gap-4 px-[15%] w-full items-center">
 			<div class="bg-button-dark w-[90%] min-w-[240px] sm:w-[70%] md:w-[364px]">
@@ -155,9 +145,9 @@ import { FormContact } from "@components/react/FormContact"
 		</div>
 	</section>
 
-	<section class="flex flex-col items-center mb-24 w-full">
-		<h2 class="text-center text-2xl font-semibold mb-4">Nossos Contatos</h2>
-		<p class="text-center text-sm mb-14">
+	<section class="flex flex-col items-center mb-24 w-full px-[10%]">
+		<h2 class="text-center text-lg font-semibold mb-4">Nossos Contatos</h2>
+		<p class="text-center text-sm mb-12">
 			Entre em contato, vamos entender sua
 			<br>
 			necessidade e propor o melhor trabalho

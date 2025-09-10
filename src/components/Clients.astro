@@ -2,7 +2,7 @@
 const {logoClient, nameClient} = Astro.props
 ---
 
-<div class="flex flex-col items-center justify-center cursor-pointer h-[8rem] w-[8rem] rounded-[50%] hover:bg-gray-200">
+<div class="flex flex-col items-center justify-center cursor-pointer h-[8rem] w-[8rem] rounded-[50%] transition-colors duration-300 hover:bg-gray-200">
     <div class="flex w-[2.5rem] h-[2.5rem] mb-4 rounded-[50%] transition-transform duration-300 hover:scale-[1.1]">
         <img class="rounded-[50%]" src={logoClient} alt="Logo do cliente">
     </div>
