@@ -1,0 +1,28 @@
+---
+import LineTime from "./LineTime.astro";
+import VitrineClientes from "./VitrineClientes.astro";
+---
+
+<section class="px-[10%]">
+    <h2 class="text-gray-800 font-bold text-lg mb-[.5rem]">Clientes - Call Center</h2>
+
+    <p class="text-sm text-gray-600 mb-[2rem]">
+        Abaixo temos alguns clientes que precisavam montar estações de call center
+        <br>
+        Confira o resultado final do nosso trabalho
+    </p>
+    
+    <VitrineClientes />
+
+    <div>
+        <h2 class="text-md text-gray-900 font-semibold mb-[2rem]">Tragetória Call Center</h2>
+
+        <div class="flex flex-col w-full gap-[4rem]">
+            <LineTime />
+            <LineTime />
+            <LineTime />
+            <LineTime />
+            <LineTime />
+        </div>
+    </div>
+</section>

@@ -5,7 +5,7 @@ import ButtonLinkSecond from "@components/ButtonLinkSecond.astro"
 import Header from "@components/Header.astro"
 import CardCategoria from "@components/CardCategoria.astro"
 import Clients from "@components/Clients.astro"
-import { FormContact } from "@components/react/FormContact"
+import ContatoSection from "@components/ContatoSection.astro"
 ---
 
 <script>
@@ -145,15 +145,5 @@ import { FormContact } from "@components/react/FormContact"
 		</div>
 	</section>
 
-	<section class="flex flex-col items-center mb-24 w-full px-[10%]">
-		<h2 class="text-center text-lg font-semibold mb-4">Nossos Contatos</h2>
-		<p class="text-center text-sm mb-12">
-			Entre em contato, vamos entender sua
-			<br>
-			necessidade e propor o melhor trabalho
-			para sua demanda
-		</p>
-
-		<FormContact client:load />
-	</section>
+	<ContatoSection />
 </Base>
