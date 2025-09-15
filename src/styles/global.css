@@ -236,3 +236,7 @@
     @apply max-w-[200%];
   }
 }
+
+img {
+  transition: all 0.3s;
+}
