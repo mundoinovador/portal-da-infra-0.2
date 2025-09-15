@@ -42,19 +42,19 @@ const {typeHeader} = Astro.props
 
             <nav class="flex gap-2">
                 <a href="/" class={styleHeaderLink}>Home</a>
-                <a href="#" class={styleHeaderLink}>Produtos</a>
+                <a href="/produtos" class={styleHeaderLink}>Produtos</a>
                 <a href="#" class={styleHeaderLink}>Contatos</a>
             </nav>
         </header>
     ) : (
-        <header class="flex justify-between items-center px-[5%]">
+        <header class="bg-white flex justify-between items-center px-[5%] py-[1.5rem]">
             <a href="/" class="w-20 transition-transform duration-300 hover:scale-115">
                 <img src='/logo-sem-texto.png' class="w-[60%]" />
             </a>
 
             <nav class="flex gap-2">
                 <a href="/" class={styleHeaderLinkNormal}>Home</a>
-                <a href="#" class={styleHeaderLinkNormal}>Produtos</a>
+                <a href="/produtos" class={styleHeaderLinkNormal}>Produtos</a>
                 <a href="#" class={styleHeaderLinkNormal}>Contatos</a>
             </nav>
         </header>
