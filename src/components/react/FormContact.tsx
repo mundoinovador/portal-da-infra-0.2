@@ -57,7 +57,7 @@ function FormContact() {
       <input
         type="submit"
         value="Enviar"
-        className="w-[80%] border py-3 font-semibold rounded-md transition-colors duration-300 hover:bg-black hover:text-white cursor-pointer mb-10"
+        className="w-[80%] text-gray-600 border border-gray-400 py-3 font-semibold rounded-md transition-colors duration-300 hover:bg-black hover:text-white cursor-pointer mb-10"
       />
     </form>
   );
