@@ -13,7 +13,7 @@ export function SelectFilter() {
   const [typeSelected, setTypeSelected] = React.useState("");
 
   return (
-    <div className="flex flex-col gap-[1rem]">
+    <div className="flex flex-col gap-[1rem] md:flex-row">
       <Select
         onValueChange={(value) => {
           setTypeSelected(value);
@@ -62,7 +62,7 @@ export function SelectFilter() {
           </SelectContent>
         </Select>
       ) : (
-        <span></span>
+        <div></div>
       )}
     </div>
   );

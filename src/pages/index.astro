@@ -6,6 +6,7 @@ import Header from "@components/Header.astro"
 import CardCategoria from "@components/CardCategoria.astro"
 import Clients from "@components/Clients.astro"
 import ContatoSection from "@components/ContatoSection.astro"
+import Banner from "@components/Banner.astro"
 ---
 
 <script>
@@ -48,24 +49,20 @@ import ContatoSection from "@components/ContatoSection.astro"
 </script>
 
 <Base title="Home">
-	<section class="hero-section flex flex-col bg-[url('../assets/bg-hero.png')] bg-cover bg-center bg-no-repeat h-[75vh] bg-black transition-all duration-300">
-		<Header />
+	<Banner>
+		<h1 class="text-center text-white font-[500] text-2xl mb-4">Portal da infra</h1>
 
-		<div class="flex flex-col w-full h-full px-[20%] py-26">
-			<h1 class="text-center text-white font-[500] text-2xl mb-4">Portal da infra</h1>
+		<p class="text-center mb-14 text-gray-300 text-sm">
+			Conforto para o seu dia a dia, estilo
+			<br>
+			para o seu escritório.
+		</p>
 
-			<p class="text-center mb-14 text-gray-300 text-sm">
-				Conforto para o seu dia a dia, estilo
-				<br>
-				para o seu escritório.
-			</p>
-
-			<div class="w-full h-full flex flex-col gap-6 items-center">
-				<ButtonLink nameButton="Nossos Produtos" />
-				<ButtonLink nameButton="Falar com consultor" />
-			</div>
+		<div class="w-full h-full flex flex-col gap-6 items-center">
+			<ButtonLink nameButton="Nossos Produtos" />
+			<ButtonLink nameButton="Falar com consultor" />
 		</div>
-	</section>
+	</Banner>
 
 	<section class="flex flex-col w-full px-[5%] py-18">
 		<div class="flex flex-col w-full md:px-[10%]">

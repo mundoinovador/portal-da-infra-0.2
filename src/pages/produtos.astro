@@ -9,11 +9,13 @@ import {SelectFilter} from "@components/react/SelectFilter"
     <Header typeHeader="header-normal" />
 
     <main class="py-[2rem]">
-        <div class="flex flex-col items-center w-full px-[10%] gap-[1rem]">
-            <FormProduct client:load />
-            
-            <div class="w-full flex justify-end">
-                <SelectFilter client:load />
+        <div class="flex justify-center">
+            <div class="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
+                <FormProduct client:load />
+    
+                <div class="w-full flex h-fit justify-end items-end">
+                    <SelectFilter client:load />
+                </div>
             </div>
         </div>
     </main>
