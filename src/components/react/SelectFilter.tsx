@@ -13,7 +13,7 @@ export function SelectFilter() {
   const [typeSelected, setTypeSelected] = React.useState("");
 
   return (
-    <div className="flex flex-col gap-[1rem] w-full">
+    <div className="flex flex-col gap-[1rem]">
       <Select
         onValueChange={(value) => {
           setTypeSelected(value);
