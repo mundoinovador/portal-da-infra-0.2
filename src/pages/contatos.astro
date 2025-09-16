@@ -1,22 +1,41 @@
 ---
 import Base from "@layouts/Base.astro";
 import Header from "@components/Header.astro";
-import { FormProduct } from "@components/react/FormProduct";
-import {SelectFilter} from "@components/react/SelectFilter"
+import ContatoSection from "@components/ContatoSection.astro";
 ---
 
-<Base>
+<Base title="Contatos">
     <Header typeHeader="header-normal" />
 
-    <main class="py-[2rem]">
-        <div class="flex justify-center">
-            <div class="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
-                <FormProduct client:load />
-    
-                <div class="w-full flex h-fit justify-end items-end">
-                    <SelectFilter client:load />
-                </div>
+    <main class="py-[2rem] px-[10%]">
+        <h2 class="text-center font-semibold text-md mb-[1.5rem]">Encontre a gente</h2>
+
+        <div class="flex flex-col mb-[2rem] gap-8">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.2420642246984!2d-46.70671208903797!3d-23.52379457873742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef97b873a6131%3A0xa7de7681c1587156!2sPortal%20da%20Infra%20M%C3%B3veis%20Para%20Escrit%C3%B3rios!5e0!3m2!1spt-BR!2sbr!4v1758031787401!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="280"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                class="rounded-md"
+            ></iframe>
+
+            <div class="flex flex-col gap-2">
+                <h3 class="font-semibold text-md mb-4">Endereço</h3>
+                <p class="flex pl-6 text-gray-800 items-center text-sm gap-2 mb-2">
+                    <img class="w-[1.5rem]" src="/src/assets/icons/copy.png" alt="Icone de copiar">
+                    RUA FAUSTOLO 1917 - LAPA - SP
+                </p>
+
+                <p class="flex pl-6 text-gray-800 items-center text-sm gap-2">
+                    <img class="w-[1.5rem]" src="/src/assets/icons/copy.png" alt="Icone de copiar">
+                    05041-001
+                </p>
             </div>
         </div>
     </main>
+
+    <ContatoSection />
 </Base>
