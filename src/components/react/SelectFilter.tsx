@@ -14,9 +14,9 @@ export function SelectFilter({ itemHome }: any) {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
 
   return (
-    <div className="flex flex-col items-end gap-[1rem] md:flex-row-reverse">
+    <div className="flex flex-col items-end gap-[1rem] md:flex-row">
       <Select
-        defaultValue={itemHome || null}
+        defaultValue={itemHome || ""}
         onValueChange={(value) => {
           window.open("/produtos?productSelect=" + value, "_self");
           setTypeSelected(value);

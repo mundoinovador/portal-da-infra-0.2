@@ -6,11 +6,11 @@ import ContatoSection from "@components/ContatoSection.astro";
 
 <Base title="Contatos">
     <Header typeHeader="header-normal" />
+    
+    <main class="w-full flex flex-col-reverse gap-12 py-12 md:py-24 md:px-[10%] md:flex-row-reverse md:justify-between md:gap-0">
+        <ContatoSection />
 
-    <main class="flex flex-col items-center py-[2rem] px-[10%]">
-        <h2 class="text-center font-semibold text-md mb-[1.5rem]">Encontre a gente</h2>
-
-        <div class="flex flex-col items-center mb-[2rem] gap-8 w-full md:flex-row-reverse">
+        <div class="flex flex-col h-full items-center justify-center px-[10%] mb-[2rem] gap-8 w-full md:items-start md:mb-0 md:px-0">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.2420642246984!2d-46.70671208903797!3d-23.52379457873742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef97b873a6131%3A0xa7de7681c1587156!2sPortal%20da%20Infra%20M%C3%B3veis%20Para%20Escrit%C3%B3rios!5e0!3m2!1spt-BR!2sbr!4v1758031787401!5m2!1spt-BR!2sbr"
                 width="100%"
@@ -19,10 +19,10 @@ import ContatoSection from "@components/ContatoSection.astro";
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                class="rounded-md max-w-[500px] sm:min-w-[300px]"
+                class="rounded-md max-w-[500px] sm:min-w-[300px] shadow-md md:shadow-2xl"
             ></iframe>
 
-            <div class="flex flex-col gap-2 w-full">
+            <div class="flex flex-col gap-2 w-full md:w-fit">
                 <h3 class="font-semibold text-md mb-4">Endereço</h3>
                 <p class="flex pl-6 text-gray-700 items-center text-sm gap-2 mb-2 cursor-pointer transition-colors hover:text-black">
                     <img class="w-[1.5rem]" src="/src/assets/icons/copy.png" alt="Icone de copiar">
@@ -37,5 +37,4 @@ import ContatoSection from "@components/ContatoSection.astro";
         </div>
     </main>
 
-    <ContatoSection />
 </Base>
