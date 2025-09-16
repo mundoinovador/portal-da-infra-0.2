@@ -41,11 +41,19 @@ function FormContact() {
       </div>
 
       <div className="flex justify-center gap-8 mb-8">
-        <a href="#" className="transition-transform hover:scale-[1.1]">
+        <a
+          href="https://www.instagram.com/portaldainfra/"
+          target="_blank"
+          className="transition-transform hover:scale-[1.1]"
+        >
           <img src={"public/instagram.png"} alt="Logo instagram" />
         </a>
 
-        <a href="#" className="transition-transform hover:scale-[1.1]">
+        <a
+          href="https://www.facebook.com/portaldainfra/"
+          target="_blank"
+          className="transition-transform hover:scale-[1.1]"
+        >
           <img src={"public/facebook.png"} alt="Logo Facebook" />
         </a>
 
