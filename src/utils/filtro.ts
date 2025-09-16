@@ -7,6 +7,8 @@ const categorias: Array<Categoria> = [
   {
     category: "cadeiras",
     itens: [
+      "Preço",
+      "Popular",
       "Cadeiras executivas",
       "Cadeiras diretor",
       "Cadeira presidente",
@@ -17,12 +19,21 @@ const categorias: Array<Categoria> = [
 
   {
     category: "mesas",
-    itens: ["mesas retas", "mesa em L", "mesa plataforma", "mesa de reunião"],
+    itens: [
+      "Preço",
+      "Popular",
+      "mesas retas",
+      "mesa em L",
+      "mesa plataforma",
+      "mesa de reunião",
+    ],
   },
 
   {
     category: "armarios",
     itens: [
+      "Preço",
+      "Popular",
       "Armários altos",
       "Armários baixos",
       "Armários de aço",
@@ -33,6 +44,11 @@ const categorias: Array<Categoria> = [
   {
     category: "callcenter",
     itens: [],
+  },
+
+  {
+    category: "geral",
+    itens: ["Todos", "Popular", "Econômico"],
   },
 ];
 

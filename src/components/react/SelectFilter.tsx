@@ -39,6 +39,9 @@ export function SelectFilter({ itemHome }: any) {
             <SelectItem className="cursor-pointer" value="armarios">
               Armários
             </SelectItem>
+            <SelectItem className="cursor-pointer" value="geral">
+              Geral
+            </SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
