@@ -1,7 +1,7 @@
 ---
 import ButtonLink from "./ButtonLink.astro";
 
-const {titleCard, imgPath} = Astro.props
+const {titleCard, imgPath, nameCard} = Astro.props
 ---
 
 <div class="flex flex-col max-w-[400px] h-[520px] justify-between transition-transform duration-300 hover:scale-[1.02]">
@@ -15,6 +15,6 @@ const {titleCard, imgPath} = Astro.props
     </div>
 
     <div class="bg-button-dark">
-        <ButtonLink colorTextButton="text-gray-800" nameButton="Ver mais" />
+        <ButtonLink colorTextButton="text-gray-800" redirectTo={`/produtos?productSelect=${nameCard}`} nameButton="Ver mais" />
     </div>
 </div>

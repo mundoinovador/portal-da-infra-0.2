@@ -9,12 +9,13 @@ import {
   SelectValue,
 } from "@components/ui/select";
 
-export function SelectFilter() {
+export function SelectFilter({ itemHome }: string | any) {
   const [typeSelected, setTypeSelected] = React.useState("");
 
   return (
     <div className="flex flex-col items-end gap-[1rem] md:flex-row-reverse">
       <Select
+        defaultValue={itemHome || ""}
         onValueChange={(value) => {
           setTypeSelected(value);
         }}
@@ -39,7 +40,7 @@ export function SelectFilter() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      {typeSelected ? (
+      {typeSelected || itemHome ? (
         <Select>
           <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
             <SelectValue placeholder="Escolha o produto" />
