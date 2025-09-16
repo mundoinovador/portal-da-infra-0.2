@@ -1,0 +1,22 @@
+---
+import Base from "@layouts/Base.astro";
+import Header from "@components/Header.astro";
+import { FormProduct } from "@components/react/FormProduct";
+import {SelectFilter} from "@components/react/SelectFilter"
+---
+
+<Base>
+    <Header typeHeader="header-normal" />
+
+    <main class="py-[2rem]">
+        <div class="flex justify-center">
+            <div class="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
+                <FormProduct client:load />
+    
+                <div class="w-full flex h-fit justify-end items-end">
+                    <SelectFilter client:load />
+                </div>
+            </div>
+        </div>
+    </main>
+</Base>

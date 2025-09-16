@@ -13,14 +13,14 @@ export function SelectFilter() {
   const [typeSelected, setTypeSelected] = React.useState("");
 
   return (
-    <div className="flex flex-col gap-[1rem] md:flex-row">
+    <div className="flex flex-col items-end gap-[1rem] md:flex-row-reverse">
       <Select
         onValueChange={(value) => {
           setTypeSelected(value);
         }}
       >
-        <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
-          <SelectValue placeholder="Escolha um item" />
+        <SelectTrigger className="w-[200px] cursor-pointer border border-gray-400">
+          <SelectValue placeholder="Escolha uma categoria" />
         </SelectTrigger>
         <SelectContent className="border border-gray-400">
           <SelectGroup>
@@ -42,7 +42,7 @@ export function SelectFilter() {
       {typeSelected ? (
         <Select>
           <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
-            <SelectValue placeholder="Escolha um item" />
+            <SelectValue placeholder="Escolha o produto" />
           </SelectTrigger>
           <SelectContent className="border border-gray-400">
             <SelectGroup>

@@ -2,7 +2,6 @@
 import Base from "@layouts/Base.astro"
 import ButtonLink from "@components/ButtonLink.astro"
 import ButtonLinkSecond from "@components/ButtonLinkSecond.astro"
-import Header from "@components/Header.astro"
 import CardCategoria from "@components/CardCategoria.astro"
 import Clients from "@components/Clients.astro"
 import ContatoSection from "@components/ContatoSection.astro"
@@ -59,7 +58,7 @@ import Banner from "@components/Banner.astro"
 		</p>
 
 		<div class="w-full h-full flex flex-col gap-6 items-center">
-			<ButtonLink nameButton="Nossos Produtos" />
+			<ButtonLink nameButton="Nossos Produtos" redirectTo="/produtos" />
 			<ButtonLink nameButton="Falar com consultor" />
 		</div>
 	</Banner>
