@@ -1,23 +1,31 @@
 ---
 import Base from "@layouts/Base.astro";
 import Header from "@components/Header.astro";
-import { FormProduct } from "@components/react/FormProduct";
 import {SelectFilter} from "@components/react/SelectFilter"
+import {CardProduct} from "@components/react/CardProduct";
 
-const productSelect = Astro.url.searchParams.get('productSelect')
+const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
+const produtos: Array<string> = [
+    "",
+    "",
+    "",
+    "",
+    "",
+]
 ---
 
 <Base title="Produtos">
     <Header typeHeader="header-normal" />
-    <main class="py-[2rem]">
-        <div class="flex justify-center">
-            <div class="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
-                <FormProduct client:load />
     
-                <div class="w-full flex h-fit justify-end items-end">
-                    <SelectFilter itemHome={productSelect} client:load />
-                </div>
-            </div>
+    <main class="flex py-[2rem] justify-center w-full">
+        <div class="flex flex-wrap w-full justify-center">
+            <SelectFilter itemHome={productSelect} client:load>
+                    {
+                        produtos.map(() => (
+                            <CardProduct client:load />
+                        ))
+                    }
+            </SelectFilter>
         </div>
     </main>
 </Base>
