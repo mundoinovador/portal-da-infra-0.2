@@ -2,16 +2,9 @@
 import Base from "@layouts/Base.astro";
 import Header from "@components/Header.astro";
 import {SelectFilter} from "@components/react/SelectFilter"
-import {CardProduct} from "@components/react/CardProduct";
 
 const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
-const produtos: Array<string> = [
-    "1",
-    "",
-    "",
-    "",
-    "",
-]
+
 ---
 
 <Base title="Produtos">
@@ -20,11 +13,7 @@ const produtos: Array<string> = [
     <main class="flex py-[2rem] justify-center w-full">
         <div class="flex flex-wrap w-full justify-center">
             <SelectFilter itemHome={productSelect} client:load>
-                    {
-                        produtos.map((item) => (
-                            <CardProduct dbProduct={item} client:load />
-                        ))
-                    }
+                    
             </SelectFilter>
         </div>
     </main>

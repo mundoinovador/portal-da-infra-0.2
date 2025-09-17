@@ -21,13 +21,13 @@ export function CardProduct({ dbProduct }: parametrosCard) {
 
         <div className="flex w-full justify-between gap-2">
           <a
-            className={`bg-white border border-gray-400 text-center text-sm text-black font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition duration-300 hover:bg-black hover:text-white`}
+            className={`bg-white border border-gray-400 text-center text-xs text-black font-[500] w-full max-w-[400px] h-fit py-3 rounded-md transition duration-300 hover:bg-black hover:text-white`}
           >
             Ver detalhes
           </a>
 
           <a
-            className={`bg-white border border-gray-400 text-center text-sm text-black font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition duration-300 hover:bg-black hover:text-white`}
+            className={`bg-white border border-gray-400 text-center text-xs text-black font-[500] w-full max-w-[400px] h-fit py-3 rounded-md transition duration-300 hover:bg-black hover:text-white`}
           >
             Consultor
           </a>

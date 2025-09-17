@@ -11,19 +11,18 @@ import {
 
 import { getCategory } from "src/utils/filtro";
 import { FormProduct } from "./FormProduct";
+import { CardProduct } from "./CardProduct";
 
 interface myComponentProps {
-  children?: React.ReactNode;
   itemHome: string;
 }
 
-export const SelectFilter: React.FC<myComponentProps> = ({
-  itemHome,
-  children,
-}) => {
+export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
   const [typeProduct, setTypeProduct] = React.useState("");
   typeProduct;
+
+  const [produtos, setProdutos] = React.useState(["1", "", "", "", ""]);
 
   return (
     <div>
@@ -116,7 +115,11 @@ export const SelectFilter: React.FC<myComponentProps> = ({
           <span></span>
         )}
 
-        <div className="flex flex-wrap gap-[2rem]">{children}</div>
+        <div className="flex flex-wrap gap-[2rem]">
+          {produtos.map((item) => (
+            <CardProduct dbProduct={item} />
+          ))}
+        </div>
       </div>
     </div>
   );
