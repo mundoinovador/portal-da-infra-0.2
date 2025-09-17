@@ -1,9 +1,14 @@
 ---
 import { MyClient } from "./react/MyClient";
+
+const styleMyClientContainer = "bg-cover bg-center w-[100%] h-[12rem] md:h-[100%] border-b-4 border-white opacity-[1] cursor-pointer transition-all duration-300 hover:h-[18rem] md:hover:h-[100%] md:hover:w-[350%] md:justify-center"
+const pathImg = [
+    "bg-[url('https://img.freepik.com/fotos-gratis/nenhuma-pessoa-na-mesa-com-varios-computadores-no-escritorio-do-call-center-usado-por-agentes-de-telemarketing-para-atender-chamadas-telefonicas-na-linha-de-apoio-espaco-vazio-com-tecnologia-para-auxiliar-no-atendimento-ao-cliente_482257-40793.jpg')]"
+]
 ---
 
 <div class="flex flex-col w-full mb-[4rem] bg-black md:flex-row md:h-[600px]">
-    <div class="relative bg-[url('https://img.freepik.com/fotos-gratis/nenhuma-pessoa-na-mesa-com-varios-computadores-no-escritorio-do-call-center-usado-por-agentes-de-telemarketing-para-atender-chamadas-telefonicas-na-linha-de-apoio-espaco-vazio-com-tecnologia-para-auxiliar-no-atendimento-ao-cliente_482257-40793.jpg')] bg-cover bg-center w-[100%] h-[8rem] md:h-[100%] border-b-8 border-white opacity-[0.4] cursor-pointer transition-all duration-300 hover:h-[15rem] md:hover:h-[100%] md:hover:w-[350%] md:justify-center hover:opacity-[1]">
+    <div class=`${pathImg + " " + styleMyClientContainer}`>
         <MyClient client:load />
     </div>
     

@@ -6,7 +6,7 @@ import {CardProduct} from "@components/react/CardProduct";
 
 const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
 const produtos: Array<string> = [
-    "",
+    "1",
     "",
     "",
     "",
@@ -21,8 +21,8 @@ const produtos: Array<string> = [
         <div class="flex flex-wrap w-full justify-center">
             <SelectFilter itemHome={productSelect} client:load>
                     {
-                        produtos.map(() => (
-                            <CardProduct client:load />
+                        produtos.map((item) => (
+                            <CardProduct dbProduct={item} client:load />
                         ))
                     }
             </SelectFilter>

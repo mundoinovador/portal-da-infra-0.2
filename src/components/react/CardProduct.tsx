@@ -1,4 +1,8 @@
-export function CardProduct() {
+interface parametrosCard {
+  dbProduct: string;
+}
+
+export function CardProduct({ dbProduct }: parametrosCard) {
   return (
     <div className="flex flex-col w-full shadow border rounded-md md:max-w-[360px]">
       <img
@@ -6,7 +10,10 @@ export function CardProduct() {
         className="rounded-md w-[100%] mb-4"
       />
 
-      <div className="flex flex-col justify-between w-full gap-6 p-4">
+      <div
+        onClick={() => window.open(`/${dbProduct}`, "_self")}
+        className="flex flex-col justify-between w-full gap-6 p-4"
+      >
         <div>
           <h2 className="text-sm font-semibold mb-2">Nome do produto</h2>
           <h3 className="text-lg">R$ 100,00</h3>

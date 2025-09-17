@@ -10,10 +10,10 @@ export function MyClient() {
       onMouseLeave={() => setViewClient("none")}
     >
       <div
-        className="flex flex-col w-fit h-fit py-4 gap-2 items-center bg-black/80 px-[2rem] rounded-2xl border border-white"
+        className="flex flex-col w-fit h-fit py-4 gap-2 items-center px-[2rem] rounded-2xl border border-white"
         style={{ display: viewClient }}
       >
-        <h2 className="text-gray-100 text-center text-lg font-bold">
+        <h2 className="text-white text-center text-2xl font-extrabold">
           1.000,00
         </h2>
         <p className="text-center text-sm text-gray-100">Cadeiras</p>
