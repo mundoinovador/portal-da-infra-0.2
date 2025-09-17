@@ -22,6 +22,8 @@ export const SelectFilter: React.FC<myComponentProps> = ({
   children,
 }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
+  const [typeProduct, setTypeProduct] = React.useState("");
+  typeProduct;
 
   return (
     <div>
@@ -29,11 +31,15 @@ export const SelectFilter: React.FC<myComponentProps> = ({
         <div className="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
           <FormProduct />
 
-          <div className="w-full flex h-fit justify-end items-end">
+          <div className="w-full flex justify-end items-end">
             <div className="flex flex-col items-end gap-[1rem] md:flex-row">
               <Select
                 defaultValue={itemHome || ""}
                 onValueChange={(value) => {
+                  if (value == "callcenter") {
+                    setTypeProduct("");
+                  }
+
                   setTypeSelected(value);
                 }}
               >
@@ -66,7 +72,11 @@ export const SelectFilter: React.FC<myComponentProps> = ({
                 </SelectContent>
               </Select>
               {typeSelected && typeSelected != "callcenter" ? (
-                <Select>
+                <Select
+                  onValueChange={(value) => {
+                    setTypeProduct(value);
+                  }}
+                >
                   <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
                     <SelectValue placeholder="Escolha o produto" />
                   </SelectTrigger>
@@ -95,9 +105,16 @@ export const SelectFilter: React.FC<myComponentProps> = ({
       </div>
 
       <div className="flex flex-col justify-center items-center px-[10%] w-fit md:px-[8%]">
-        <h2 className="w-full text-left mb-[1rem] font-semibold text-lg">
-          Pesquisa <span className="font-normal">| Cadeiras - Diretor</span>
-        </h2>
+        {typeSelected ? (
+          <h2 className="w-full text-left mb-[1rem] font-semibold text-lg">
+            Pesquisa{" "}
+            <span className="font-normal">
+              | {typeSelected} {typeProduct ? "-" : ""} {typeProduct}
+            </span>
+          </h2>
+        ) : (
+          <span></span>
+        )}
 
         <div className="flex flex-wrap gap-[2rem]">{children}</div>
       </div>
