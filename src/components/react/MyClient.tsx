@@ -5,7 +5,7 @@ export function MyClient() {
 
   return (
     <div
-      className="flex w-[100%] h-[8rem] md:h-[100%] justify-center items-center bg-transparent transition-all duration-300 hover:h-[15rem] hover:md:h-[100%]"
+      className="flex w-[100%] h-[100%] bg-transparent rounded-2xl justify-center items-center transition-all duration-300 hover:h-[18rem] md:hover:h-[100%] hover:bg-black/50"
       onMouseEnter={() => setViewClient("flex")}
       onMouseLeave={() => setViewClient("none")}
     >
