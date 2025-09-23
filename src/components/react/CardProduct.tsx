@@ -4,11 +4,8 @@ interface parametrosCard {
 
 export function CardProduct({ dbProduct }: parametrosCard) {
   return (
-    <div className="flex flex-col w-full shadow border rounded-md md:max-w-[360px]">
-      <img
-        src="src/assets/categorias/call-center2.png"
-        className="rounded-md w-[100%] mb-4"
-      />
+    <div className="flex flex-col w-full py-4 shadow border rounded-md md:max-w-[360px]">
+      <img src="src/assets/produto.jpeg" className="rounded-md w-[100%] mb-4" />
 
       <div
         onClick={() => window.open(`/${dbProduct}`, "_self")}
