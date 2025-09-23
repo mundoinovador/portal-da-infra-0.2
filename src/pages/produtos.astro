@@ -12,9 +12,7 @@ const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
     
     <main class="flex py-[2rem] justify-center w-full">
         <div class="flex flex-wrap w-full justify-center">
-            <SelectFilter itemHome={productSelect} client:load>
-                    
-            </SelectFilter>
+            <SelectFilter itemHome={productSelect} client:load />
         </div>
     </main>
 </Base>
