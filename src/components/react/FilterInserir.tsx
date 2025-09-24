@@ -11,6 +11,7 @@ import {
 
 import { getCategory } from "src/utils/filtro";
 import { FormInserir } from "./FormInserir";
+import { enviarProduto, listarProdutosBanco, type Dados } from "src/lib/utils";
 
 interface myComponentProps {
   itemHome?: string;
@@ -20,8 +21,32 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
   const [typeProduct, setTypeProduct] = React.useState("");
 
+  async function saveProdutos() {
+    const produtos: Dados = {
+      nome: "Cadeira Gamer",
+      preco: "R$ 1.200",
+      categoria: "cadeira",
+      subCategoria: "gamer",
+      descricao:
+        "Uma cadeira muito confortavél para jogar, trabalhar ou até mesmo passar uma ótima tarde na janela",
+      imgCapa:
+        "https://http2.mlstatic.com/D_NQ_NP_780686-MLA86354607999_062025-O.webp",
+      imgProduto: [
+        "https://http2.mlstatic.com/D_NQ_NP_780686-MLA86354607999_062025-O.webp",
+        "https://m.media-amazon.com/images/I/71fvceC2wvL._UF894,1000_QL80_.jpg",
+      ],
+    };
+
+    await enviarProduto(produtos);
+  }
+
+  async function listar() {
+    await console.log(listarProdutosBanco());
+  }
+
   return (
     <div>
+      <button onClick={listar}>Teste</button>
       <div className="flex justify-end mb-8 md:mb-[4rem]">
         <div className="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
           <FormInserir />
