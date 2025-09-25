@@ -14,7 +14,7 @@ const client = new MongoClient(uri, {
 // FUNÇÃO PARA INSERIR NO BANCO
 async function inserirNoBanco(dados: Dados) {
   await client.connect();
-  const coll = client.db("catalogo_db").collection("produtos");
+  const coll = client.db("catalogo_db").collection<Dados>("produtos");
   const result = await coll.insertOne(dados);
   return result.insertedId;
 }

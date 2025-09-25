@@ -10,7 +10,6 @@ import {
 } from "@components/ui/select";
 
 import { getCategory } from "src/utils/filtro";
-import { FormInserir } from "./FormInserir";
 import { enviarProduto, listarProdutosBanco, type Dados } from "src/lib/utils";
 
 interface myComponentProps {
@@ -40,16 +39,90 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
     await enviarProduto(produtos);
   }
 
-  async function listar() {
-    await console.log(listarProdutosBanco());
-  }
-
   return (
     <div>
-      <button onClick={listar}>Teste</button>
+      <button onClick={saveProdutos}>Teste</button>
       <div className="flex justify-end mb-8 md:mb-[4rem]">
         <div className="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
-          <FormInserir />
+          <form className="flex flex-col w-full gap-4 items-center">
+            <div className="input-form-container">
+              <label htmlFor="search-product-input" className="label-form">
+                Pesquisar
+              </label>
+              <input
+                className="input-search"
+                type="text"
+                name="search-product-input"
+                id="search-product-input"
+                placeholder="Pesquise aqui"
+              />
+            </div>
+
+            <div className="input-form-container">
+              <label htmlFor="name-product-input" className="label-form">
+                Nome
+              </label>
+              <input
+                className="input-search"
+                type="text"
+                name="name-product-input"
+                id="name-product-input"
+                placeholder="Digite seu nome"
+              />
+            </div>
+
+            <div className="input-form-container">
+              <label htmlFor="preco-product-input" className="label-form">
+                Preço
+              </label>
+              <input
+                className="input-search"
+                type="number"
+                name="preco-product-input"
+                id="preco-product-input"
+                placeholder="Digite o preço"
+              />
+            </div>
+
+            <div className="input-form-container">
+              <label htmlFor="descricao-product-input" className="label-form">
+                Descrição
+              </label>
+              <input
+                className="input-search"
+                type="text"
+                name="descricao-product-input"
+                id="descricao-product-input"
+                placeholder="Digite uma descrição"
+              />
+            </div>
+
+            <div className="input-form-container">
+              <label htmlFor="imgCapa-product-input" className="label-form">
+                Imagem da Capa
+              </label>
+              <input
+                className="input-search"
+                type="text"
+                name="imgCapa-product-input"
+                id="imgCapa-product-input"
+                placeholder="Link da imagem"
+              />
+            </div>
+
+            <div className="input-form-container">
+              <label htmlFor="name-product-input" className="label-form">
+                Nome
+              </label>
+              <input
+                className="input-search"
+                type="text"
+                name="name-product-input"
+                id="name-product-input"
+                placeholder="Digite seu nome"
+              />
+            </div>
+          </form>
 
           <div className="w-full flex justify-end items-end">
             <div className="flex flex-col items-end gap-[1rem] md:flex-row">
