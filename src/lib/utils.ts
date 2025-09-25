@@ -9,7 +9,7 @@ export interface Dados {
   preco: string;
   descricao: string;
   imgCapa: string;
-  imgProduto: [string, string];
+  imgProduto: [string, string, string?];
 }
 
 export function cn(...inputs: ClassValue[]) {
