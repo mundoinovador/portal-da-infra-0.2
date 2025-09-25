@@ -27,17 +27,17 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
   const [img2Produto, setImg2Produto] = React.useState("");
   const [img3Produto, setImg3Produto] = React.useState("");
 
-  function checarDados() {
+  function ajustarStringPreco() {
     const novoPreco = `R$ ${precoProduto.toString()},00`;
-    setPrecoProduto(novoPreco);
+    return novoPreco;
   }
 
   async function saveProdutos() {
-    checarDados();
+    const novoPreco = ajustarStringPreco();
 
     const produtos: Dados = {
       nome: nomeProduto,
-      preco: precoProduto,
+      preco: novoPreco,
       categoria: typeSelected,
       subCategoria: typeProduct,
       descricao: descricaoProduto,
