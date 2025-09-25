@@ -9,10 +9,8 @@ import {
   SelectValue,
 } from "@components/ui/select";
 
-import ButtonLink from "@components/ButtonLink.astro";
-
 import { getCategory } from "src/utils/filtro";
-import { enviarProduto, listarProdutosBanco, type Dados } from "src/lib/utils";
+import { enviarProduto, type Dados } from "src/lib/utils";
 
 interface myComponentProps {
   itemHome?: string;
@@ -21,6 +19,13 @@ interface myComponentProps {
 export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
   const [typeProduct, setTypeProduct] = React.useState("");
+  const [nomeProduto, setNomeProduto] = React.useState("");
+  const [precoProduto, setPrecoProduto] = React.useState("");
+  const [descricaoProduto, setDescricaoProduto] = React.useState("");
+  const [capaProduto, setCapaProduto] = React.useState("");
+  const [img1Produto, setImg1Produto] = React.useState("");
+  const [img2Produto, setImg2Produto] = React.useState("");
+  const [img3Produto, setImg3Produto] = React.useState("");
 
   async function saveProdutos() {
     const produtos: Dados = {
@@ -56,6 +61,8 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="name-product-input"
                 id="name-product-input"
                 placeholder="Digite seu nome"
+                value={nomeProduto}
+                onChange={(e) => setNomeProduto(e.target.value)}
               />
             </div>
 
@@ -65,7 +72,7 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                   defaultValue={itemHome || ""}
                   onValueChange={(value) => {
                     if (value == "callcenter") {
-                      setTypeProduct("");
+                      setTypeSelected("");
                     }
 
                     setTypeSelected(value);
@@ -116,9 +123,9 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                             <SelectItem
                               key={index}
                               className="cursor-pointer"
-                              value={item}
+                              value={item.nome}
                             >
-                              {item}
+                              {item.title}
                             </SelectItem>
                           )
                         )}
@@ -141,6 +148,8 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="preco-product-input"
                 id="preco-product-input"
                 placeholder="Digite o preço"
+                value={precoProduto}
+                onChange={(e) => setPrecoProduto(e.target.value)}
               />
             </div>
 
@@ -154,6 +163,8 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="descricao-product-input"
                 id="descricao-product-input"
                 placeholder="Digite uma descrição"
+                value={descricaoProduto}
+                onChange={(e) => setDescricaoProduto(e.target.value)}
               />
             </div>
 
@@ -167,6 +178,8 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="imgCapa-product-input"
                 id="imgCapa-product-input"
                 placeholder="Link da imagem"
+                value={capaProduto}
+                onChange={(e) => setCapaProduto(e.target.value)}
               />
             </div>
 
@@ -180,6 +193,8 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="img1-product-input"
                 id="img1-product-input"
                 placeholder="Link da imagem"
+                value={img1Produto}
+                onChange={(e) => setImg1Produto(e.target.value)}
               />
             </div>
 
@@ -193,6 +208,8 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="img2-product-input"
                 id="img2-product-input"
                 placeholder="Link da imagem"
+                value={img2Produto}
+                onChange={(e) => setImg2Produto(e.target.value)}
               />
             </div>
 
@@ -206,12 +223,14 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                 name="img3-product-input"
                 id="img3-product-input"
                 placeholder="Link da imagem"
+                value={img3Produto}
+                onChange={(e) => setImg3Produto(e.target.value)}
               />
             </div>
           </form>
 
           <a
-            href="#"
+            onClick={saveProdutos}
             className={`bg-white border border-gray-600 text-center text-sm text-gray-800 font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition duration-300 hover:bg-black/100 hover:text-white`}
           >
             Enviar
