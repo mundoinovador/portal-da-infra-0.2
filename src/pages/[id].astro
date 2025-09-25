@@ -1,10 +1,16 @@
 ---
 import Header from "@components/Header.astro"
 import Base from "@layouts/Base.astro"
+import { CarouselDemo } from "@components/react/CarrosselProdutos"
 
 const {id} = Astro.params
 ---
 
 <Base>
     <Header typeHeader="header-normal" />
+
+    <main class="flex w-full">
+        <CarouselDemo client:load />
+
+    </main>
 </Base>
