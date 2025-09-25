@@ -4,8 +4,8 @@ import { twMerge } from "tailwind-merge";
 // INTERFACE DE TIPAGENS GLOBAIS
 export interface Dados {
   nome: string;
-  categoria: string;
-  subCategoria: string;
+  categoria?: string;
+  subCategoria?: string;
   preco: string;
   descricao: string;
   imgCapa: string;

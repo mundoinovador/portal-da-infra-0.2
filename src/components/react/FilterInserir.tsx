@@ -27,20 +27,22 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
   const [img2Produto, setImg2Produto] = React.useState("");
   const [img3Produto, setImg3Produto] = React.useState("");
 
+  function checarDados() {
+    const novoPreco = `R$ ${precoProduto.toString()},00`;
+    setPrecoProduto(novoPreco);
+  }
+
   async function saveProdutos() {
+    checarDados();
+
     const produtos: Dados = {
-      nome: "Cadeira Gamer",
-      preco: "R$ 1.200",
-      categoria: "cadeira",
-      subCategoria: "gamer",
-      descricao:
-        "Uma cadeira muito confortavél para jogar, trabalhar ou até mesmo passar uma ótima tarde na janela",
-      imgCapa:
-        "https://http2.mlstatic.com/D_NQ_NP_780686-MLA86354607999_062025-O.webp",
-      imgProduto: [
-        "https://http2.mlstatic.com/D_NQ_NP_780686-MLA86354607999_062025-O.webp",
-        "https://m.media-amazon.com/images/I/71fvceC2wvL._UF894,1000_QL80_.jpg",
-      ],
+      nome: nomeProduto,
+      preco: precoProduto,
+      categoria: typeSelected,
+      subCategoria: typeProduct,
+      descricao: descricaoProduto,
+      imgCapa: capaProduto,
+      imgProduto: [img1Produto, img2Produto, img3Produto],
     };
 
     await enviarProduto(produtos);
