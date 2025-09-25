@@ -10,22 +10,24 @@ import {
 
 export function CarouselDemo() {
   return (
-    <Carousel className="w-full">
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-              <div>
-                <div className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-        ))}
+    <Carousel className="relative px-[4rem]">
+      <CarouselPrevious className="absolute left-0" />
+      <CarouselContent className="flex bg-blue-400 w-full">
+        <CarouselItem className="w-full">
+          <div className="flex flex-col gap-4 items-center">
+            <h2>Imagem</h2>
+            <p>Aqui ficara imagens dos produtos</p>
+            <img
+              className="w-full"
+              src="http://localhost:4321/src/assets/produto.jpeg"
+              alt=""
+            />
+          </div>
+        </CarouselItem>
+        <CarouselItem>2</CarouselItem>
+        <CarouselItem>3</CarouselItem>
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselNext className="absolute right-4" />
     </Carousel>
   );
 }
