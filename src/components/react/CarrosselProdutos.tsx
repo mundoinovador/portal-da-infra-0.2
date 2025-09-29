@@ -11,7 +11,6 @@ import {
 export function CarouselDemo() {
   return (
     <Carousel className="relative px-[4rem]">
-      <CarouselPrevious className="absolute left-0" />
       <CarouselContent className="flex bg-blue-400 w-full">
         <CarouselItem className="w-full">
           <div className="flex flex-col gap-4 items-center">
@@ -27,7 +26,14 @@ export function CarouselDemo() {
         <CarouselItem>2</CarouselItem>
         <CarouselItem>3</CarouselItem>
       </CarouselContent>
-      <CarouselNext className="absolute right-4" />
+      {window.innerWidth >= 500 ? (
+        <div>
+          <CarouselPrevious className="absolute left-0" />
+          <CarouselNext className="absolute right-4" />
+        </div>
+      ) : (
+        <span></span>
+      )}
     </Carousel>
   );
 }

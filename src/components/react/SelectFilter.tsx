@@ -9,9 +9,10 @@ import {
   SelectValue,
 } from "@components/ui/select";
 
-import { getCategory } from "src/utils/filtro";
 import { FormProduct } from "./FormProduct";
 import { CardProduct } from "./CardProduct";
+
+import { getCategory } from "src/lib/utils";
 
 interface myComponentProps {
   itemHome: string;
@@ -81,16 +82,23 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
                   </SelectTrigger>
                   <SelectContent className="border border-gray-400">
                     <SelectGroup>
-                      {getCategory(typeSelected).itens.map(
-                        (item: any, index: number) => (
-                          <SelectItem
-                            key={index}
-                            className="cursor-pointer"
-                            value={item}
-                          >
-                            {item}
-                          </SelectItem>
+                      {getCategory(typeSelected) ? (
+                        getCategory(typeSelected).itens.map(
+                          (
+                            item: { nome: string; title: string },
+                            index: number
+                          ) => (
+                            <SelectItem
+                              key={index}
+                              className="cursor-pointer"
+                              value={item.nome}
+                            >
+                              {item.title}
+                            </SelectItem>
+                          )
                         )
+                      ) : (
+                        <span></span>
                       )}
                     </SelectGroup>
                   </SelectContent>
