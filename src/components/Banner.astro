@@ -3,10 +3,10 @@ import Header from "./Header.astro";
 const {heightBanner} = Astro.props
 ---
 
-<section class=`hero-section flex flex-col bg-[url('../assets/bg-hero.png')] bg-cover bg-center bg-no-repeat h-[${heightBanner || '75vh'}] bg-black transition-all duration-300`>
+<section class=`hero-section flex flex-col bg-[url('../assets/bg-hero.png')] bg-cover bg-center bg-no-repeat h-[75vh] md:h-[${heightBanner || '75vh'}] bg-black transition-all duration-300`>
     <Header />
 
-    <div class="flex flex-col w-full h-full px-[20%] py-26">
+    <div class="flex flex-col w-full h-full px-[8%] mt-[10vh] md:px-[20%] md:mt-[15vh]">
         <slot />
     </div>
 </section>

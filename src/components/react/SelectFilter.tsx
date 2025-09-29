@@ -21,7 +21,6 @@ interface myComponentProps {
 export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
   const [typeProduct, setTypeProduct] = React.useState("");
-  typeProduct;
 
   const [produtos, setProdutos] = React.useState(["1", "", "", "", ""]);
 
@@ -116,7 +115,7 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
           <h2 className="w-full text-left mb-[1rem] font-semibold text-lg">
             Pesquisa{" "}
             <span className="font-normal">
-              | {typeSelected} {typeProduct ? "-" : ""} {typeProduct}
+              | {typeSelected} {typeProduct ? `- ${typeProduct}` : ""}
             </span>
           </h2>
         ) : (
