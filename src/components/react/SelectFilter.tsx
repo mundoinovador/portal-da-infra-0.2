@@ -22,6 +22,10 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
   const [typeProduct, setTypeProduct] = React.useState("");
 
+  const [getcategory, setGetCategory] = React.useState(
+    getCategory(typeSelected) || ""
+  );
+
   const [produtos, setProdutos] = React.useState(["1", "", "", "", ""]);
 
   return (
@@ -35,11 +39,10 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
               <Select
                 defaultValue={itemHome || ""}
                 onValueChange={(value) => {
-                  if (value == "callcenter") {
-                    setTypeProduct("");
-                  }
-
                   setTypeSelected(value);
+
+                  const newGetCategory = getCategory(typeSelected);
+                  setGetCategory(newGetCategory);
                 }}
               >
                 <SelectTrigger className="w-[200px] cursor-pointer border border-gray-400">
@@ -70,6 +73,7 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
+
               {typeSelected && typeSelected != "callcenter" ? (
                 <Select
                   onValueChange={(value) => {
@@ -79,13 +83,14 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
                   <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
                     <SelectValue placeholder="Escolha o produto" />
                   </SelectTrigger>
+
                   <SelectContent className="border border-gray-400">
                     <SelectGroup>
-                      {getCategory(typeSelected) ? (
-                        getCategory(typeSelected).itens.map(
+                      {getcategory ? (
+                        getcategory.itens.map(
                           (
                             item: { nome: string; title: string },
-                            index: number
+                            index: string
                           ) => (
                             <SelectItem
                               key={index}

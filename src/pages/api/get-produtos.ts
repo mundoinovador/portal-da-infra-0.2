@@ -22,12 +22,14 @@ async function buscarProdutos() {
 export const GET: APIRoute = async () => {
   try {
     const produtos = await buscarProdutos();
+
     return new Response(JSON.stringify(produtos), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error(error);
+
     return new Response(JSON.stringify({ error: "Erro ao buscar produtos" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

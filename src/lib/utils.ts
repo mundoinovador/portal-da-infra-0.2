@@ -28,6 +28,7 @@ const categorias: Array<Categoria> = [
       { title: "Cadeiras Presidente", nome: "cadeiras-presidente" },
       { title: "Cadeiras Gamer", nome: "cadeiras-gamer" },
       { title: "Cadeiras Fixo", nome: "cadeiras-fixo" },
+      { title: "poltronas para recepção", nome: "poltrona para recepção" },
     ],
   },
 

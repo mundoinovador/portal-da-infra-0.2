@@ -1,6 +1,50 @@
+interface UserData {
+  nameUser: string;
+  email: string;
+  wpp: string;
+  source: string;
+}
+
 function FormContact() {
+  async function sendUserData(data: UserData) {
+    try {
+      const response = await fetch(
+        "https://seu-projeto.onrender.com/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Resposta do servidor:", result);
+      return result;
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+      throw error;
+    }
+  }
+
   return (
-    <form className="flex flex-col w-full gap-4 max-w-[450px] items-center">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        sendUserData({
+          nameUser: "Nicolas",
+          email: "nicolas@email.com",
+          wpp: "55999999999",
+          source: "landing-page",
+        });
+      }}
+      className="flex flex-col w-full gap-4 max-w-[450px] items-center"
+    >
       <div className="input-form-container">
         <label htmlFor="nome" className="label-form">
           Nome completo

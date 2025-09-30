@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@components/ui/select";
 
-import { getCategory } from "src/utils/filtro";
+import { getCategory } from "src/lib/utils";
 import { enviarProduto, type Dados } from "src/lib/utils";
 
 interface myComponentProps {
