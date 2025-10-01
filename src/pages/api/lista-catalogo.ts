@@ -32,7 +32,11 @@ export const POST: APIRoute = async ({ request }) => {
       preco: dados.preco,
       descricao: dados.descricao,
       imgCapa: dados.imgCapa,
-      imgProduto: [dados.imgProduto[0], dados.imgProduto[1]],
+      imgProduto: [
+        dados.imgProduto[0],
+        dados.imgProduto[1],
+        dados.imgProduto[2],
+      ],
     }).catch(console.dir);
 
     return new Response(JSON.stringify(result), {

@@ -24,7 +24,7 @@ function FormContact() {
       }
 
       const result = await response.json();
-      console.log("Resposta do servidor:", result);
+      console.log("Resposta do servidor");
       return result;
     } catch (error) {
       console.error("Erro ao enviar dados:", error);

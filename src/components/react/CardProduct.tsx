@@ -6,7 +6,7 @@ interface parametrosCard {
 
 export function CardProduct({ nome, preco, imgCapa }: parametrosCard) {
   return (
-    <div className="flex flex-col w-full py-4 shadow border rounded-md md:max-w-[360px]">
+    <div className="flex flex-col justify-between w-full shadow border rounded-md md:max-w-[360px] hover:cursor-pointer transition-transform hover:scale-[1.01]">
       <img src={imgCapa} className="rounded-md w-[100%] mb-4" />
 
       <div

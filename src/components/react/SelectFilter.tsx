@@ -22,7 +22,7 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeSelected, setTypeSelected] = React.useState(itemHome);
   const [typeProduct, setTypeProduct] = React.useState("");
 
-  const [getcategory, setGetCategory] = React.useState(
+  const [getCategoryValue, setGetCategoryValue] = React.useState(
     getCategory(typeSelected)
   );
 
@@ -52,10 +52,12 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
               <Select
                 defaultValue={itemHome || ""}
                 onValueChange={(value) => {
+                  /* Atualiza a várivel da categoria selecionada */
                   setTypeSelected(value);
 
+                  /* Trás o documento atualizado das sub categorias */
                   const newGetCategory = getCategory(typeSelected);
-                  setGetCategory(newGetCategory);
+                  setGetCategoryValue(newGetCategory);
                 }}
               >
                 <SelectTrigger className="w-[200px] cursor-pointer border border-gray-400">
@@ -87,42 +89,41 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
                 </SelectContent>
               </Select>
 
-              {typeSelected && typeSelected != "callcenter" ? (
-                <Select
-                  onValueChange={(value) => {
-                    setTypeProduct(value);
-                  }}
-                >
-                  <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
-                    <SelectValue placeholder="Escolha o produto" />
-                  </SelectTrigger>
+              {
+                /* Se a categoria existe e
+              se a categoria é diferente de call center */
+                typeSelected && typeSelected != "callcenter" ? (
+                  <Select
+                    onValueChange={(value) => {
+                      setTypeProduct(value);
+                    }}
+                  >
+                    <SelectTrigger className="w-[180px] cursor-pointer border border-gray-400">
+                      <SelectValue placeholder="Escolha o produto" />
+                    </SelectTrigger>
 
-                  <SelectContent className="border border-gray-400">
-                    <SelectGroup>
-                      {getcategory ? (
-                        getcategory.itens.map(
-                          (
-                            item: { nome: string; title: string },
-                            index: string
-                          ) => (
-                            <SelectItem
-                              key={index}
-                              className="cursor-pointer"
-                              value={item.nome}
-                            >
-                              {item.title}
-                            </SelectItem>
+                    <SelectContent className="border border-gray-400">
+                      <SelectGroup>
+                        {getCategory(typeSelected).itens.map(
+                          (item: any, index: number) => (
+                            <div onClick={() => alert("Foi")}>
+                              <SelectItem
+                                key={index}
+                                className="cursor-pointer"
+                                value={item.nome}
+                              >
+                                {item.title}
+                              </SelectItem>
+                            </div>
                           )
-                        )
-                      ) : (
-                        <span></span>
-                      )}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              ) : (
-                <div></div>
-              )}
+                        )}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <div></div>
+                )
+              }
             </div>
           </div>
         </div>

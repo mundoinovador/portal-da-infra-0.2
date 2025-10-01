@@ -28,7 +28,7 @@ const categorias: Array<Categoria> = [
       { title: "Cadeiras Presidente", nome: "cadeiras-presidente" },
       { title: "Cadeiras Gamer", nome: "cadeiras-gamer" },
       { title: "Cadeiras Fixo", nome: "cadeiras-fixo" },
-      { title: "poltronas para recepção", nome: "poltrona para recepção" },
+      { title: "poltronas para recepção", nome: "poltrona-para-recepcao" },
     ],
   },
 
@@ -90,7 +90,7 @@ export async function enviarProduto(produto: Dados) {
   }
 
   const data = await res.json();
-  console.log("Resultado do servidor:", data);
+  console.log("Resultado do servidor");
 }
 
 // 1) LISTAR TODOS OS PRODUTOS (sem filtro)
@@ -134,9 +134,10 @@ export async function listarPorFiltro(filtros: {
   });
 }
 
-export function getCategory(item: string): object | any {
+export function getCategory(item: string): any {
   console.log(
     "Categoria encontrada",
+    item,
     categorias.find((categoria) => categoria.category === item)
   );
 
