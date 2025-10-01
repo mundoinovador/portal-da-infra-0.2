@@ -56,7 +56,7 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
                   setTypeSelected(value);
 
                   /* Trás o documento atualizado das sub categorias */
-                  const newGetCategory = getCategory(typeSelected);
+                  const newGetCategory = getCategory(value);
                   setGetCategoryValue(newGetCategory);
                 }}
               >
@@ -104,18 +104,22 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
 
                     <SelectContent className="border border-gray-400">
                       <SelectGroup>
-                        {getCategory(typeSelected).itens.map(
-                          (item: any, index: number) => (
-                            <div onClick={() => alert("Foi")}>
-                              <SelectItem
-                                key={index}
-                                className="cursor-pointer"
-                                value={item.nome}
-                              >
-                                {item.title}
-                              </SelectItem>
-                            </div>
+                        {getCategoryValue ? (
+                          getCategoryValue.itens.map(
+                            (item: any, index: number) => (
+                              <div onClick={() => alert("Foi")}>
+                                <SelectItem
+                                  key={index}
+                                  className="cursor-pointer"
+                                  value={item.nome}
+                                >
+                                  {item.title}
+                                </SelectItem>
+                              </div>
+                            )
                           )
+                        ) : (
+                          <span></span>
                         )}
                       </SelectGroup>
                     </SelectContent>
