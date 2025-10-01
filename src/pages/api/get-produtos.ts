@@ -26,7 +26,13 @@ export const GET: APIRoute = async () => {
 
     return new Response(JSON.stringify(produtos), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        // Configuração de CORS:
+        "Access-Control-Allow-Origin": "*", // ou o domínio específico
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
     });
   } catch (error) {
     console.error(error);
