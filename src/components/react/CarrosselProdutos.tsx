@@ -10,17 +10,19 @@ import {
 
 export function CarouselDemo() {
   return (
-    <Carousel className="relative px-[4rem]">
-      <CarouselContent className="flex bg-blue-400 w-full">
-        <CarouselItem className="w-full">
-          <div className="flex flex-col gap-4 items-center">
-            <h2>Imagem</h2>
-            <p>Aqui ficara imagens dos produtos</p>
-            <img className="w-full" src="/assets/produto.jpeg" alt="" />
-          </div>
+    <Carousel className="relative">
+      <CarouselContent className="flex w-[100vw] h-[60vh]">
+        <CarouselItem>
+          <div className="bg-[url('/produtos/cadeiras/fixo/1/cadeira.jpeg')] bg-cover bg-center flex flex-col gap-4 justfy-center items-center w-full h-full"></div>
         </CarouselItem>
-        <CarouselItem>2</CarouselItem>
-        <CarouselItem>3</CarouselItem>
+
+        <CarouselItem>
+          <div className="bg-[url('/produtos/cadeiras/fixo/1/cadeira2.jpeg')] bg-cover bg-center flex flex-col gap-4 justfy-center items-center w-full h-full"></div>
+        </CarouselItem>
+
+        <CarouselItem>
+          <div className="bg-[url('/produtos/cadeiras/fixo/1/cadeira3.jpeg')] bg-cover bg-center flex flex-col gap-4 justfy-center items-center w-full h-full"></div>
+        </CarouselItem>
       </CarouselContent>
       {window.innerWidth >= 500 ? (
         <div>
