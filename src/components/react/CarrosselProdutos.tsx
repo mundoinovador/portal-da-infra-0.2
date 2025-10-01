@@ -16,7 +16,7 @@ export function CarouselDemo() {
           <div className="flex flex-col gap-4 items-center">
             <h2>Imagem</h2>
             <p>Aqui ficara imagens dos produtos</p>
-            <img className="w-full" src="./assets/produto.jpeg" alt="" />
+            <img className="w-full" src="/assets/produto.jpeg" alt="" />
           </div>
         </CarouselItem>
         <CarouselItem>2</CarouselItem>
