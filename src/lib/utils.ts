@@ -93,21 +93,52 @@ export async function enviarProduto(produto: Dados) {
   console.log("Resultado do servidor:", data);
 }
 
-// LISTAR PRODUTO
-export async function listarProdutosBanco() {
-  const res = await fetch("http://localhost:4321/api/get-produtos", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
+// 1) LISTAR TODOS OS PRODUTOS (sem filtro)
+export async function listarTodosProdutos(): Promise<Dados[]> {
+  const res = await fetch("http://localhost:4321/api/get-produtos");
+  if (!res.ok) throw new Error("Erro ao buscar produtos");
+  return res.json();
+}
+
+// 2) LISTAR PRODUTOS POR CATEGORIA
+export async function listarPorCategoria(categoria: string): Promise<Dados[]> {
+  const produtos = await listarTodosProdutos();
+  return produtos.filter((p) => p.categoria === categoria);
+}
+
+// 3) LISTAR PRODUTOS POR SUBCATEGORIA (dependendo da categoria)
+export async function listarPorSubCategoria(
+  categoria: string,
+  subCategoria: string
+): Promise<Dados[]> {
+  const produtos = await listarTodosProdutos();
+  return produtos.filter(
+    (p) => p.categoria === categoria && p.subCategoria === subCategoria
+  );
+}
+
+// 4) LISTAR PRODUTOS POR OUTROS PARÂMETROS (ex.: title)
+export async function listarPorFiltro(filtros: {
+  title?: string;
+}): Promise<Dados[]> {
+  const produtos = await listarTodosProdutos();
+
+  return produtos.filter((p) => {
+    let ok = true;
+
+    if (filtros.title) {
+      ok = ok && p.nome.toLowerCase().includes(filtros.title.toLowerCase()); // adaptável
+    }
+
+    return ok;
   });
-  if (!res.ok) {
-    console.error("Erro ao buscar produtos");
-    return;
-  }
-  const produtos = await res.json();
-  console.log("Produtos:", produtos[0]);
-  return produtos;
 }
 
 export function getCategory(item: string): object | any {
+  console.log(
+    "Categoria encontrada",
+    categorias.find((categoria) => categoria.category === item)
+  );
+
   return categorias.find((categoria) => categoria.category === item);
 }

@@ -1,19 +1,21 @@
 interface parametrosCard {
-  dbProduct: string;
+  nome: string;
+  preco: string;
+  imgCapa: string;
 }
 
-export function CardProduct({ dbProduct }: parametrosCard) {
+export function CardProduct({ nome, preco, imgCapa }: parametrosCard) {
   return (
     <div className="flex flex-col w-full py-4 shadow border rounded-md md:max-w-[360px]">
-      <img src="src/assets/produto.jpeg" className="rounded-md w-[100%] mb-4" />
+      <img src={imgCapa} className="rounded-md w-[100%] mb-4" />
 
       <div
-        onClick={() => window.open(`/${dbProduct}`, "_self")}
+        onClick={() => window.open(`/1`, "_self")}
         className="flex flex-col justify-between w-full gap-6 p-4"
       >
         <div>
-          <h2 className="text-sm font-semibold mb-2">Nome do produto</h2>
-          <h3 className="text-lg">R$ 100,00</h3>
+          <h2 className="text-sm font-semibold mb-2">{nome}</h2>
+          <h3 className="text-lg">{preco}</h3>
         </div>
 
         <div className="flex w-full justify-between gap-2">

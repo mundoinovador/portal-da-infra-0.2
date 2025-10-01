@@ -12,7 +12,7 @@ import {
 import { FormProduct } from "./FormProduct";
 import { CardProduct } from "./CardProduct";
 
-import { getCategory } from "src/lib/utils";
+import { type Dados, getCategory, listarTodosProdutos } from "src/lib/utils";
 
 interface myComponentProps {
   itemHome: string;
@@ -23,14 +23,27 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
   const [typeProduct, setTypeProduct] = React.useState("");
 
   const [getcategory, setGetCategory] = React.useState(
-    getCategory(typeSelected) || ""
+    getCategory(typeSelected)
   );
 
-  const [produtos, setProdutos] = React.useState(["1", "", "", "", ""]);
+  const [produtos, setProdutos] = React.useState<Dados[]>([]);
+
+  React.useEffect((): void => {
+    async function carregarProdutos() {
+      try {
+        const produtosApi: Dados[] = await listarTodosProdutos();
+        setProdutos(produtosApi);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    }
+
+    carregarProdutos();
+  }, []);
 
   return (
-    <div>
-      <div className="flex justify-end mb-8 md:mb-[4rem]">
+    <div className="flex flex-col w-full">
+      <div className="flex w-full justify-end mb-8 md:mb-[4rem]">
         <div className="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
           <FormProduct />
 
@@ -128,8 +141,12 @@ export const SelectFilter: React.FC<myComponentProps> = ({ itemHome }) => {
         )}
 
         <div className="flex flex-wrap gap-[2rem]">
-          {produtos.map((item) => (
-            <CardProduct dbProduct={item} />
+          {produtos.map((produto: Dados) => (
+            <CardProduct
+              nome={produto.nome}
+              preco={produto.preco}
+              imgCapa={produto.imgCapa}
+            />
           ))}
         </div>
       </div>

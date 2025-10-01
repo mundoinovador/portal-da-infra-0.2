@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 const uri = import.meta.env.MONGODB_URI;
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -22,6 +23,7 @@ async function buscarProdutos() {
 export const GET: APIRoute = async () => {
   try {
     const produtos = await buscarProdutos();
+    console.log(produtos);
 
     return new Response(JSON.stringify(produtos), {
       status: 200,
