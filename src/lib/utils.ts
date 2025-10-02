@@ -135,11 +135,5 @@ export async function listarPorFiltro(filtros: {
 }
 
 export function getCategory(item: string): any {
-  console.log(
-    "Categoria encontrada",
-    item,
-    categorias.find((categoria) => categoria.category === item)
-  );
-
   return categorias.find((categoria) => categoria.category === item);
 }

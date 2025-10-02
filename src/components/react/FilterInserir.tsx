@@ -108,6 +108,7 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+
                 {typeSelected && typeSelected != "callcenter" ? (
                   <Select
                     onValueChange={(value) => {

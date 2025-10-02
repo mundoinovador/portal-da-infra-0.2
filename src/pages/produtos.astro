@@ -1,10 +1,9 @@
 ---
 import Base from "@layouts/Base.astro";
 import Header from "@components/Header.astro";
-import {SelectFilter} from "@components/react/SelectFilter"
+import FiltrosProdutos from "@components/react/FiltrosProdutos"
 
 const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
-
 ---
 
 <Base title="Produtos">
@@ -12,7 +11,7 @@ const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
     
     <main class="flex py-[2rem] justify-center w-full">
         <div class="flex flex-wrap w-full justify-center">
-            <SelectFilter itemHome={productSelect} client:idle />
+            <FiltrosProdutos categoriaProduto={productSelect} client:load />
         </div>
     </main>
 </Base>
