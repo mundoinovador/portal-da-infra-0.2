@@ -96,6 +96,7 @@ const FiltrosProdutos = ({
         <div className="flex flex-wrap gap-[2rem]">
           {produtos.map((produto: Dados) => (
             <CardProduct
+              key={produto._id}
               nome={produto.nome}
               preco={produto.preco}
               imgCapa={produto.imgCapa}

@@ -10,6 +10,7 @@ export interface Dados {
   descricao: string;
   imgCapa: string;
   imgProduto: [string, string, string?];
+  _id?: string;
 }
 
 interface Categoria {
