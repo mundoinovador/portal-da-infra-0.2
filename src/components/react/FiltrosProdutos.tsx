@@ -59,7 +59,7 @@ const FiltrosProdutos = ({
 
           <div className="w-full flex justify-end items-end">
             <div className="flex flex-col items-end gap-[1rem] md:flex-row">
-              {/* <Select>
+              <Select>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Escolha uma categoria" />
                 </SelectTrigger>
@@ -75,7 +75,7 @@ const FiltrosProdutos = ({
                     <SelectItem value="geral">Geral</SelectItem>
                   </SelectGroup>
                 </SelectContent>
-              </Select> */}
+              </Select>
             </div>
           </div>
         </div>

@@ -96,7 +96,9 @@ export async function enviarProduto(produto: Dados) {
 
 // 1) LISTAR TODOS OS PRODUTOS (sem filtro)
 export async function listarTodosProdutos(): Promise<Dados[]> {
-  const res = await fetch("/api/get-produtos");
+  const res = await fetch(
+    "https://portal-da-infra-8pn8d0cw9-nicolas-projects-3fb58508.vercel.app/api/get-produtos"
+  );
   if (!res.ok) throw new Error("Erro ao buscar produtos");
   return res.json();
 }
