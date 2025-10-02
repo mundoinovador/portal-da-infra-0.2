@@ -80,7 +80,7 @@ export function cn(...inputs: ClassValue[]) {
 
 // CRIAR PRODUTO
 export async function enviarProduto(produto: Dados) {
-  const res = await fetch("http://localhost:4321/api/lista-catalogo", {
+  const res = await fetch("/api/lista-catalogo", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(produto),
@@ -96,7 +96,7 @@ export async function enviarProduto(produto: Dados) {
 
 // 1) LISTAR TODOS OS PRODUTOS (sem filtro)
 export async function listarTodosProdutos(): Promise<Dados[]> {
-  const res = await fetch("http://localhost:4321/api/get-produtos");
+  const res = await fetch("/api/get-produtos");
   if (!res.ok) throw new Error("Erro ao buscar produtos");
   return res.json();
 }
