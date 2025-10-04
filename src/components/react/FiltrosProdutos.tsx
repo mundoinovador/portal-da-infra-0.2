@@ -14,11 +14,9 @@ import { CardProduct } from "./CardProduct";
 
 import {
   type Dados,
-  getCategory,
   listarPorCategoria,
   listarTodosProdutos,
 } from "src/lib/utils";
-import ButtonLink from "@components/ButtonLink.astro";
 
 const FiltrosProdutos = ({
   categoriaProduto,
