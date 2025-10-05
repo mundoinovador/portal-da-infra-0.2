@@ -13,7 +13,7 @@ import {
 import { CardProduct } from "./CardProduct";
 
 import {
-  buscarProdutos,
+  buscarProdutosPorTexto,
   type Dados,
   getCategory,
   listarPorCategoria,
@@ -34,7 +34,7 @@ const FiltrosProdutos = ({
   const [searchProduto, setSearchProduto] = React.useState<string>("");
 
   const [produtos, setProdutos] = React.useState<Dados[]>([]);
-  const [visibleCount, setVisibleCount] = React.useState<number>(10);
+  const [visibleCount, setVisibleCount] = React.useState<number>(9);
 
   const [mostrarSelect, setMostrarSelect] = React.useState<boolean>();
   const increment = 5;
@@ -61,7 +61,7 @@ const FiltrosProdutos = ({
   const buscarItens = async () => {
     if (searchProduto.length > 2) {
       try {
-        const produtosPorNome = await buscarProdutos(searchProduto);
+        const produtosPorNome = await buscarProdutosPorTexto(searchProduto);
         setProdutos(produtosPorNome);
       } catch (e) {
         carregarProdutos("");
@@ -72,13 +72,15 @@ const FiltrosProdutos = ({
   React.useEffect((): void => {
     if (!typeSelected) {
       carregarProdutos("");
+    } else {
+      carregarProdutos(typeSelected);
     }
     if (searchProduto.length == 0) {
       setMostrarSelect(true);
     } else {
       setMostrarSelect(false);
     }
-  }, [produtos]);
+  }, []);
 
   return (
     <div className="flex flex-col w-full">
@@ -178,6 +180,9 @@ const FiltrosProdutos = ({
                 onClick={() => {
                   setSearchProduto("");
                   setMostrarSelect(true);
+                  setTypeSelected("");
+                  setTypeProduct("");
+                  carregarProdutos("");
                 }}
                 className="bg-white text-black/60 px-8 border border-black/40 text-center cursor-pointer text-xs md:text-sm h-fit py-2 rounded-md transition-transform duration-300 hover:scale-[1.05] hover:bg-black/80 hover:text-white"
               >

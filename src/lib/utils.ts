@@ -14,8 +14,8 @@ export interface Dados {
 }
 
 interface Categoria {
-  category?: string;
-  itens?: { title: string; nome: string }[];
+  category: string;
+  itens: { title: string; nome: string }[];
 }
 
 const categorias: Array<Categoria> = [
@@ -96,9 +96,7 @@ export async function enviarProduto(produto: Dados) {
 
 // 1) LISTAR TODOS OS PRODUTOS (sem filtro)
 export async function listarTodosProdutos(): Promise<Dados[]> {
-  const res = await fetch(
-    "https://portal-da-infra-8pn8d0cw9-nicolas-projects-3fb58508.vercel.app/api/get-produtos"
-  );
+  const res = await fetch("/api/get-produtos");
   if (!res.ok) throw new Error("Erro ao buscar produtos");
   return res.json();
 }
@@ -138,7 +136,7 @@ export async function listarPorFiltro(filtros: {
   });
 }
 
-export async function buscarProdutos(search = "") {
+export async function buscarProdutosPorTexto(search = "") {
   return (await listarTodosProdutos()).filter((item, index) =>
     item.nome.toLowerCase().includes(search.toLowerCase())
   );
