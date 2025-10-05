@@ -17,6 +17,7 @@ import {
   type Dados,
   getCategory,
   listarPorCategoria,
+  listarPorSubCategoria,
   listarTodosProdutos,
 } from "src/lib/utils";
 
@@ -25,8 +26,10 @@ const FiltrosProdutos = ({
 }: {
   categoriaProduto: string;
 }) => {
-  const [typeSelected, setTypeSelected] = React.useState<string>("");
-  const [typeProduct, setTypeProduct] = React.useState<string>();
+  const [typeSelected, setTypeSelected] = React.useState<string>(
+    categoriaProduto || ""
+  );
+  const [typeProduct, setTypeProduct] = React.useState<string>("");
 
   const [searchProduto, setSearchProduto] = React.useState<string>("");
 
@@ -67,6 +70,9 @@ const FiltrosProdutos = ({
   };
 
   React.useEffect((): void => {
+    if (!typeSelected) {
+      carregarProdutos("");
+    }
     if (searchProduto.length == 0) {
       setMostrarSelect(true);
     } else {
@@ -108,6 +114,7 @@ const FiltrosProdutos = ({
                   onValueChange={(item) => {
                     carregarProdutos(item);
                     setSearchProduto("");
+                    setTypeProduct("");
                   }}
                   value={typeSelected || ""}
                 >
@@ -132,7 +139,20 @@ const FiltrosProdutos = ({
                 {typeSelected && typeSelected != "callcenter" ? (
                   <Select
                     value={typeProduct || ""}
-                    onValueChange={() => setSearchProduto("")}
+                    onValueChange={async (e) => {
+                      setTypeProduct(e);
+                      try {
+                        const searchSubCategory = await listarPorSubCategoria(
+                          typeSelected,
+                          e
+                        );
+
+                        setProdutos(searchSubCategory);
+                        setSearchProduto("");
+                      } catch {
+                        return;
+                      }
+                    }}
                   >
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Escolha um produto" />

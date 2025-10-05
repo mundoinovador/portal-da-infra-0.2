@@ -115,6 +115,7 @@ export async function listarPorSubCategoria(
   subCategoria: string
 ): Promise<Dados[]> {
   const produtos = await listarTodosProdutos();
+  console.log(subCategoria);
   return produtos.filter(
     (p) => p.categoria === categoria && p.subCategoria === subCategoria
   );
