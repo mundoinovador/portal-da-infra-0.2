@@ -13,7 +13,9 @@ import {
 import { CardProduct } from "./CardProduct";
 
 import {
+  buscarProdutos,
   type Dados,
+  getCategory,
   listarPorCategoria,
   listarTodosProdutos,
 } from "src/lib/utils";
@@ -23,11 +25,15 @@ const FiltrosProdutos = ({
 }: {
   categoriaProduto: string;
 }) => {
-  const [typeSelected, setTypeSelected] = React.useState<string>();
+  const [typeSelected, setTypeSelected] = React.useState<string>("");
   const [typeProduct, setTypeProduct] = React.useState<string>();
 
+  const [searchProduto, setSearchProduto] = React.useState<string>("");
+
   const [produtos, setProdutos] = React.useState<Dados[]>([]);
-  const [visibleCount, setVisibleCount] = React.useState(10);
+  const [visibleCount, setVisibleCount] = React.useState<number>(10);
+
+  const [mostrarSelect, setMostrarSelect] = React.useState<boolean>();
   const increment = 5;
 
   async function carregarProdutos(categoria: string) {
@@ -49,12 +55,30 @@ const FiltrosProdutos = ({
     setVisibleCount((prev) => prev + increment);
   };
 
+  const buscarItens = async () => {
+    if (searchProduto.length > 2) {
+      try {
+        const produtosPorNome = await buscarProdutos(searchProduto);
+        console.log(produtosPorNome);
+        setProdutos(produtosPorNome);
+      } catch (e) {
+        carregarProdutos("");
+      }
+    }
+  };
+
   React.useEffect((): void => {
-    carregarProdutos(categoriaProduto);
-  }, []);
+    if (searchProduto.length == 0) {
+      carregarProdutos(categoriaProduto);
+      setMostrarSelect(true);
+    } else {
+      setMostrarSelect(false);
+    }
+  }, [produtos]);
 
   return (
     <div className="flex flex-col w-full">
+      {/* FILTROS DOS PRODUTOS */}
       <div className="flex w-full justify-end mb-8 md:mb-[4rem]">
         <div className="flex flex-col items-center w-full px-[10%] gap-[1rem] max-w-[800px]">
           <form className="flex flex-col w-full gap-4 items-center">
@@ -69,40 +93,84 @@ const FiltrosProdutos = ({
                 name="search-product-input"
                 id="search-product-input"
                 placeholder="Pesquise aqui"
+                value={searchProduto}
+                onChange={(e) => {
+                  setSearchProduto(e.target.value);
+                  setMostrarSelect(false);
+                  buscarItens();
+                }}
               />
             </div>
           </form>
 
           <div className="w-full flex justify-end items-end">
-            <div className="flex flex-col items-end gap-[1rem] md:flex-row">
-              <Select
-                onValueChange={(item) => {
-                  carregarProdutos(item);
-                }}
-                value={typeSelected || ""}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Escolha uma categoria" />
-                </SelectTrigger>
+            {mostrarSelect ? (
+              <div className="flex flex-col items-end gap-[1rem] md:flex-row">
+                <Select
+                  onValueChange={(item) => {
+                    carregarProdutos(item);
+                    setSearchProduto("");
+                  }}
+                  value={typeSelected || ""}
+                >
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Escolha uma categoria" />
+                  </SelectTrigger>
 
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Categorias</SelectLabel>
-                    <SelectItem value="callcenter">
-                      Espaço call center
-                    </SelectItem>
-                    <SelectItem value="cadeiras">Cadeiras</SelectItem>
-                    <SelectItem value="mesas">Mesas</SelectItem>
-                    <SelectItem value="armarios">Armários</SelectItem>
-                    <SelectItem value="geral">Geral</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Categorias</SelectLabel>
+                      <SelectItem value="callcenter">
+                        Espaço call center
+                      </SelectItem>
+                      <SelectItem value="cadeiras">Cadeiras</SelectItem>
+                      <SelectItem value="mesas">Mesas</SelectItem>
+                      <SelectItem value="armarios">Armários</SelectItem>
+                      <SelectItem value="geral">Geral</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+
+                {typeSelected && typeSelected != "callcenter" ? (
+                  <Select
+                    value={typeProduct || ""}
+                    onValueChange={() => setSearchProduto("")}
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Escolha um produto" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Produtos</SelectLabel>
+                        {getCategory(typeSelected).itens.map((item, index) => (
+                          <SelectItem value={item.nome} key={index}>
+                            {item.title}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <span></span>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setSearchProduto("");
+                  setMostrarSelect(true);
+                }}
+                className="bg-white text-black/60 px-8 border border-black/40 text-center cursor-pointer text-xs md:text-sm h-fit py-2 rounded-md transition-transform duration-300 hover:scale-[1.05] hover:bg-black/80 hover:text-white"
+              >
+                Mostrar filtros
+              </button>
+            )}
           </div>
         </div>
       </div>
 
+      {/* RELACIONADO AOS PRODUTOS EXIBIDOS */}
       <div className="flex flex-col justify-center items-center px-[10%] w-fit md:px-[8%]">
         {/* Precisa criar uma váriavel só para mostrar o titulo e uma função que muda a váriavel toda vez que muda o titulo */}
         {typeSelected ? (

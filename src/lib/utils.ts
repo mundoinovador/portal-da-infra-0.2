@@ -14,8 +14,8 @@ export interface Dados {
 }
 
 interface Categoria {
-  category: string;
-  itens: { title: string; nome: string }[];
+  category?: string;
+  itens?: { title: string; nome: string }[];
 }
 
 const categorias: Array<Categoria> = [
@@ -137,6 +137,16 @@ export async function listarPorFiltro(filtros: {
   });
 }
 
-export function getCategory(item: string): any {
-  return categorias.find((categoria) => categoria.category === item);
+export async function buscarProdutos(search = "") {
+  return (await listarTodosProdutos()).filter((item, index) =>
+    item.nome.toLowerCase().includes(search.toLowerCase())
+  );
+}
+
+export function getCategory(item: string): Categoria {
+  const categoriaEncontrada = categorias.find(
+    (categoria) => categoria.category === item
+  );
+
+  return categoriaEncontrada || <Categoria>{ category: "", itens: [] };
 }
