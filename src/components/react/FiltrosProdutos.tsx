@@ -59,7 +59,6 @@ const FiltrosProdutos = ({
     if (searchProduto.length > 2) {
       try {
         const produtosPorNome = await buscarProdutos(searchProduto);
-        console.log(produtosPorNome);
         setProdutos(produtosPorNome);
       } catch (e) {
         carregarProdutos("");
@@ -69,7 +68,6 @@ const FiltrosProdutos = ({
 
   React.useEffect((): void => {
     if (searchProduto.length == 0) {
-      carregarProdutos(categoriaProduto);
       setMostrarSelect(true);
     } else {
       setMostrarSelect(false);
