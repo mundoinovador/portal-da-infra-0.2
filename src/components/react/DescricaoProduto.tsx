@@ -18,7 +18,7 @@ export default function DescricaoProduto({ descricao }: Descricao) {
       {descricao.length > 150 && (
         <button
           onClick={() => setExpandido(!expandido)}
-          className="ml-1 cursor-pointer text-black/45 hover:underline focus:outline-none"
+          className="ml-1 cursor-pointer text-black/45 hover:underline hover:text-black/80 focus:outline-none"
         >
           {expandido ? "mostrar menos" : "mostrar mais"}
         </button>

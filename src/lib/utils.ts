@@ -92,6 +92,7 @@ export async function enviarProduto(produto: Dados) {
 // 1) LISTAR TODOS OS PRODUTOS
 export async function listarTodosProdutos(): Promise<Dados[]> {
   const res = await fetch("http://localhost:4321/api/get-produtos");
+  console.log(res.ok);
   if (!res.ok) throw new Error("Erro ao buscar produtos");
   return res.json();
 }

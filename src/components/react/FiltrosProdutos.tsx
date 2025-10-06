@@ -33,7 +33,7 @@ const FiltrosProdutos = ({
 
   const [searchProduto, setSearchProduto] = React.useState<string>("");
 
-  const [produtos, setProdutos] = React.useState<Dados[]>([]);
+  const [produtos, setProdutos] = React.useState<Dados[] | [any]>([]);
   const [visibleCount, setVisibleCount] = React.useState<number>(9);
 
   const [mostrarSelect, setMostrarSelect] = React.useState<boolean>();
