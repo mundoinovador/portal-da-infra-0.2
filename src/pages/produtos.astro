@@ -2,6 +2,7 @@
 import Base from "@layouts/Base.astro";
 import Header from "@components/Header.astro";
 import FiltrosProdutos from "@components/react/FiltrosProdutos"
+import { FormContact } from "@components/react/FormContact";
 
 const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
 ---
@@ -9,9 +10,13 @@ const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
 <Base title="Produtos">
     <Header typeHeader="header-normal" />
     
-    <main class="flex py-[2rem] justify-center w-full">
+    <main class="flex py-[1rem] justify-center w-full">
         <div class="flex flex-wrap w-full justify-center">
             <FiltrosProdutos categoriaProduto={productSelect} client:load />
         </div>
     </main>
+
+    <footer class="p-6">
+        <FormContact />
+    </footer>
 </Base>

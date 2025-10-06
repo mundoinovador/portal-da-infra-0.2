@@ -3,6 +3,9 @@ import Header from "@components/Header.astro";
 import Base from "@layouts/Base.astro";
 import { CarouselDemo } from "@components/react/CarrosselProdutos";
 import { buscarProdutoPorId } from "src/lib/utils";
+import ButtonLink from "@components/ButtonLink.astro";
+import { FormContact } from "@components/react/FormContact";
+import DescricaoProduto from "@components/react/DescricaoProduto";
 
 const { id } = Astro.params;
 const produto = await buscarProdutoPorId(id);
@@ -12,12 +15,41 @@ console.log(produto?.imgProduto)
 <Base>
   <Header typeHeader="header-normal" />
 
-  <main class="flex w-full justify-center px-[5%] py-[4rem]">
-    {produto ? (
-      <CarouselDemo listaImg={produto.imgProduto || []} client:only="react" />
+  <main class="flex w-full justify-center px-[5%] py-[2rem] md:mb-[2rem]">
+    <div class="flex w-full max-w-[2040px]">
+      {produto ? (
+        <div class="flex flex-col w-full md:flex-row-reverse md:items-start md:justify-between">
+          <div class="flex flex-col md:w-[50%]">
+            <div class="mb-[3rem]">
+              <h2 class="text-lg font-semibold">{produto.nome}</h2>
+              <h3 class="text-2xl">{produto.preco}</h3>
+            </div>
 
-    ) : (
-      <p class="text-center text-gray-500">Produto não encontrado.</p>
-    )}
+            <div class="mb-[3rem]">
+              <CarouselDemo listaImg={produto.imgProduto || []} client:only="react" />
+            </div>
+          </div>
+
+          <div class="flex flex-col md:w-[40%] md:flex-col-reverse md:justify-between">
+            <div class="flex w-full max-w-[400px] rounded-lg bg-black mb-[2rem] ">
+              <ButtonLink nameButton="Falar com Consultor" redirectTo="#"  />
+            </div>
+
+            <div>
+              <p class="mb-4 font-semibold">Descrição:</p>
+              <DescricaoProduto descricao={produto.descricao} client:load />
+            </div>
+          </div>
+        </div>
+
+      ) : (
+        <p class="text-center text-gray-500">Produto não encontrado.</p>
+      )}
+    </div>
   </main>
+
+  <footer class="p-6 w-full flex justify-center">
+    <FormContact />
+  </footer>
+  
 </Base>
