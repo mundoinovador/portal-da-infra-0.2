@@ -22,10 +22,10 @@ try {
     <div class="flex w-full max-w-[2040px]">
       {produto ? (
         <div class="flex flex-col w-full md:flex-row-reverse md:items-start md:justify-between">
-          <div class="flex flex-col md:w-[50%]">
+          <div class="flex flex-col md:w-[35%]">
             <div class="mb-[3rem]">
-              <h2 class="text-lg font-semibold md:text-right">{produto.nome}</h2>
-              <h3 class="text-2xl md:text-right">{produto.preco}</h3>
+              <h2 class="text-lg font-semibold md:text-left">{produto.nome}</h2>
+              <h3 class="text-2xl md:text-left">{produto.preco}</h3>
             </div>
 
             <div class="mb-[3rem]">
@@ -37,10 +37,11 @@ try {
             </div>
           </div>
 
-          <div class="flex flex-col md:w-[40%] md:flex-col-reverse md:justify-between md:h-full">
+          <div class="flex flex-col w-full md:w-[40%] md:flex-col-reverse md:justify-center md:gap-[5rem] md:h-full">
             <div class="flex w-full max-w-[400px] rounded-lg bg-black mb-[2rem]">
               <ButtonLink nameButton="Falar com Consultor" redirectTo="#" />
             </div>
+
             <div>
               <p class="mb-4 font-semibold">Descrição:</p>
               {produto.descricao ? (

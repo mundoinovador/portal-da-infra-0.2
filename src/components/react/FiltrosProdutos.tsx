@@ -22,13 +22,12 @@ import {
 } from "src/lib/utils";
 
 const FiltrosProdutos = ({
-  categoriaProduto,
+  categoriaProduto = "",
 }: {
   categoriaProduto: string;
 }) => {
-  const [typeSelected, setTypeSelected] = React.useState<string>(
-    categoriaProduto || ""
-  );
+  const [typeSelected, setTypeSelected] =
+    React.useState<string>(categoriaProduto);
   const [typeProduct, setTypeProduct] = React.useState<string>("");
 
   const [searchProduto, setSearchProduto] = React.useState<string>("");
@@ -36,7 +35,7 @@ const FiltrosProdutos = ({
   const [produtos, setProdutos] = React.useState<Dados[]>([]);
   const [visibleCount, setVisibleCount] = React.useState<number>(9);
 
-  const [mostrarSelect, setMostrarSelect] = React.useState<boolean>();
+  const [mostrarSelect, setMostrarSelect] = React.useState<boolean>(true);
   const increment = 5;
 
   async function carregarProdutos(categoria: string) {
