@@ -2,22 +2,36 @@ import type { APIRoute } from "astro";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 const uri = import.meta.env.MONGODB_URI;
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-
-async function buscarProdutos() {
-  await client.connect();
-  const coll = client.db("catalogo_db").collection("produtos");
-  const produtos = await coll.find({}).toArray();
-  return produtos;
+if (!uri) {
+  throw new Error("URI do MongoDB não configurada");
 }
 
-const produtos = await buscarProdutos();
+let cachedClient: MongoClient | null = null;
+
+async function getMongoClient() {
+  if (cachedClient) return cachedClient;
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
+  await client.connect();
+  cachedClient = client;
+  return client;
+}
+
+async function buscarProdutos() {
+  try {
+    const client = await getMongoClient();
+    const coll = client.db("catalogo_db").collection("produtos");
+    return await coll.find({}).toArray();
+  } catch (error) {
+    console.error("Erro ao buscar produtos:", error);
+    throw new Error("Falha ao buscar produtos");
+  }
+}
 
 // Tratamento para requisições OPTIONS (pré-flight)
 export const OPTIONS: APIRoute = async () => {
@@ -34,6 +48,7 @@ export const OPTIONS: APIRoute = async () => {
 // API GET
 export const GET: APIRoute = async ({ request }) => {
   try {
+    const produtos = await buscarProdutos();
     return new Response(JSON.stringify(produtos), {
       status: 200,
       headers: {
@@ -44,13 +59,19 @@ export const GET: APIRoute = async ({ request }) => {
       },
     });
   } catch (error) {
-    console.error(error);
-    return new Response(JSON.stringify({ error: "Erro ao buscar produtos" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
+    console.error("Erro na API:", error);
+    return new Response(
+      JSON.stringify({
+        error: "Erro ao buscar produtos",
+        details: error instanceof Error ? error.message : "Unknown error",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
   }
 };
