@@ -15,11 +15,11 @@ export function CarouselDemo({ listaImg }: CarouselDemoProps) {
   console.log(listaImg);
   return (
     <Carousel className="relative">
-      <CarouselContent className="flex w-[100vw] h-[60vh]">
+      <CarouselContent className="flex w-full">
         {listaImg.map((item, index) => (
           <CarouselItem key={index} className="flex justify-center w-full">
             <div
-              className="flex flex-col gap-4 justify-center items-center w-[80vw] h-[60vh] bg-cover bg-center rounded-2xl"
+              className="flex flex-col gap-4 justify-center items-center w-full h-[60vh] bg-contain bg-no-repeat bg-center rounded-2xl"
               style={{ backgroundImage: `url('${item}')` }}
             ></div>
           </CarouselItem>
