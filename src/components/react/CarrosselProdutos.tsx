@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Carousel,
   CarouselContent,
@@ -8,30 +7,28 @@ import {
   CarouselPrevious,
 } from "@components/ui/carousel";
 
-export function CarouselDemo() {
+interface CarouselDemoProps {
+  listaImg: string[];
+}
+
+export function CarouselDemo({ listaImg }: CarouselDemoProps) {
+  console.log(listaImg);
   return (
     <Carousel className="relative">
       <CarouselContent className="flex w-[100vw] h-[60vh]">
-        <CarouselItem>
-          <div className="bg-[url('/produtos/cadeiras/fixo/1/cadeira.jpeg')] bg-cover bg-center flex flex-col gap-4 justfy-center items-center w-full h-full"></div>
-        </CarouselItem>
-
-        <CarouselItem>
-          <div className="bg-[url('/produtos/cadeiras/fixo/1/cadeira2.jpeg')] bg-cover bg-center flex flex-col gap-4 justfy-center items-center w-full h-full"></div>
-        </CarouselItem>
-
-        <CarouselItem>
-          <div className="bg-[url('/produtos/cadeiras/fixo/1/cadeira3.jpeg')] bg-cover bg-center flex flex-col gap-4 justfy-center items-center w-full h-full"></div>
-        </CarouselItem>
+        {listaImg.map((item, index) => (
+          <CarouselItem key={index} className="flex justify-center w-full">
+            <div
+              className="flex flex-col gap-4 justify-center items-center w-[80vw] h-[60vh] bg-cover bg-center rounded-2xl"
+              style={{ backgroundImage: `url('${item}')` }}
+            ></div>
+          </CarouselItem>
+        ))}
       </CarouselContent>
-      {window.innerWidth >= 500 ? (
-        <div>
-          <CarouselPrevious className="absolute left-0" />
-          <CarouselNext className="absolute right-4" />
-        </div>
-      ) : (
-        <span></span>
-      )}
+
+      {/* Botões aparecem apenas em telas médias pra cima */}
+      <CarouselPrevious className="hidden sm:flex absolute left-0" />
+      <CarouselNext className="hidden sm:flex absolute right-4" />
     </Carousel>
   );
 }

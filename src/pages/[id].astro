@@ -1,16 +1,23 @@
 ---
-import Header from "@components/Header.astro"
-import Base from "@layouts/Base.astro"
-import { CarouselDemo } from "@components/react/CarrosselProdutos"
+import Header from "@components/Header.astro";
+import Base from "@layouts/Base.astro";
+import { CarouselDemo } from "@components/react/CarrosselProdutos";
+import { buscarProdutoPorId } from "src/lib/utils";
 
-const {id} = Astro.params
+const { id } = Astro.params;
+const produto = await buscarProdutoPorId(id);
+console.log(produto?.imgProduto)
 ---
 
 <Base>
-    <Header typeHeader="header-normal" />
+  <Header typeHeader="header-normal" />
 
-    <main class="flex w-full justify-center px-[5%] py-[4rem]">
-        <CarouselDemo client:only />
+  <main class="flex w-full justify-center px-[5%] py-[4rem]">
+    {produto ? (
+      <CarouselDemo listaImg={produto.imgProduto || []} client:only="react" />
 
-    </main>
+    ) : (
+      <p class="text-center text-gray-500">Produto não encontrado.</p>
+    )}
+  </main>
 </Base>

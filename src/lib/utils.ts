@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+export type IDType = string | { $oid?: string } | { [key: string]: unknown };
+
 // INTERFACE DE TIPAGENS GLOBAIS
 export interface Dados {
   nome: string;
@@ -9,8 +11,8 @@ export interface Dados {
   preco: string;
   descricao: string;
   imgCapa: string;
-  imgProduto: [string, string, string?];
-  _id?: string;
+  imgProduto: [string, string, string | ""];
+  _id?: IDType;
 }
 
 interface Categoria {
@@ -32,7 +34,6 @@ const categorias: Array<Categoria> = [
       { title: "poltronas para recepção", nome: "poltrona-para-recepcao" },
     ],
   },
-
   {
     category: "mesas",
     itens: [
@@ -44,7 +45,6 @@ const categorias: Array<Categoria> = [
       { title: "Mesas de Reunião", nome: "mesas-reuniao" },
     ],
   },
-
   {
     category: "armarios",
     itens: [
@@ -56,12 +56,10 @@ const categorias: Array<Categoria> = [
       { title: "Roupeiro de aço", nome: "roupeiro-de-aco" },
     ],
   },
-
   {
     category: "callcenter",
     itens: [],
   },
-
   {
     category: "geral",
     itens: [
@@ -78,7 +76,6 @@ export function cn(...inputs: ClassValue[]) {
 
 // REQUISIÇÕES - HTTP
 
-// CRIAR PRODUTO
 export async function enviarProduto(produto: Dados) {
   const res = await fetch("/api/lista-catalogo", {
     method: "POST",
@@ -86,66 +83,78 @@ export async function enviarProduto(produto: Dados) {
     body: JSON.stringify(produto),
   });
 
-  if (!res.ok) {
-    return;
-  }
+  if (!res.ok) return;
 
   const data = await res.json();
-  console.log("Resultado do servidor");
+  console.log("Resultado do servidor:", data);
 }
 
-// 1) LISTAR TODOS OS PRODUTOS (sem filtro)
+// 1) LISTAR TODOS OS PRODUTOS
 export async function listarTodosProdutos(): Promise<Dados[]> {
-  const res = await fetch("/api/get-produtos");
+  const res = await fetch("http://localhost:4321/api/get-produtos");
   if (!res.ok) throw new Error("Erro ao buscar produtos");
   return res.json();
 }
 
-// 2) LISTAR PRODUTOS POR CATEGORIA
+// 2) LISTAR POR CATEGORIA
 export async function listarPorCategoria(categoria: string): Promise<Dados[]> {
   const produtos = await listarTodosProdutos();
   return produtos.filter((p) => p.categoria === categoria);
 }
 
-// 3) LISTAR PRODUTOS POR SUBCATEGORIA (dependendo da categoria)
+// 3) LISTAR POR SUBCATEGORIA
 export async function listarPorSubCategoria(
   categoria: string,
   subCategoria: string
 ): Promise<Dados[]> {
   const produtos = await listarTodosProdutos();
-  console.log(subCategoria);
   return produtos.filter(
     (p) => p.categoria === categoria && p.subCategoria === subCategoria
   );
 }
 
-// 4) LISTAR PRODUTOS POR OUTROS PARÂMETROS (ex.: title)
+function extractId(item: Dados): string | undefined {
+  const raw = item._id;
+  if (!raw) return undefined;
+  if (typeof raw === "string") return raw;
+
+  const anyRaw = raw as { $oid?: unknown; toString?: () => string };
+  if (typeof anyRaw.$oid === "string") return anyRaw.$oid;
+  if (typeof anyRaw.toString === "function") return anyRaw.toString();
+  return undefined;
+}
+
+export async function buscarProdutoPorId(id?: string): Promise<Dados | null> {
+  if (!id) return null;
+  const produtos = await listarTodosProdutos();
+  return produtos.find((item) => extractId(item) === id) ?? null;
+}
+
+// 4) FILTRAR PRODUTOS
 export async function listarPorFiltro(filtros: {
   title?: string;
 }): Promise<Dados[]> {
   const produtos = await listarTodosProdutos();
-
   return produtos.filter((p) => {
     let ok = true;
-
     if (filtros.title) {
-      ok = ok && p.nome.toLowerCase().includes(filtros.title.toLowerCase()); // adaptável
+      ok = ok && p.nome.toLowerCase().includes(filtros.title.toLowerCase());
     }
-
     return ok;
   });
 }
 
 export async function buscarProdutosPorTexto(search = "") {
-  return (await listarTodosProdutos()).filter((item, index) =>
+  return (await listarTodosProdutos()).filter((item) =>
     item.nome.toLowerCase().includes(search.toLowerCase())
   );
 }
 
 export function getCategory(item: string): Categoria {
-  const categoriaEncontrada = categorias.find(
-    (categoria) => categoria.category === item
+  return (
+    categorias.find((categoria) => categoria.category === item) || {
+      category: "",
+      itens: [],
+    }
   );
-
-  return categoriaEncontrada || <Categoria>{ category: "", itens: [] };
 }

@@ -208,12 +208,13 @@ const FiltrosProdutos = ({
         )}
 
         <div className="flex flex-wrap gap-[2rem] mb-[4rem]">
-          {produtos.slice(0, visibleCount).map((produto: Dados) => (
+          {produtos.slice(0, visibleCount).map((produto: Dados, index) => (
             <CardProduct
-              key={produto._id}
+              key={index}
               nome={produto.nome}
               preco={produto.preco}
               imgCapa={produto.imgCapa}
+              idProduct={produto._id != undefined ? String(produto._id) : ""}
             />
           ))}
         </div>
