@@ -48,18 +48,18 @@ import Banner from "@components/Banner.astro"
 </script>
 
 <Base title="Home">
-	<Banner heightBanner="100vh">
-		<h1 class="text-center text-white font-[500] text-2xl mb-4">Portal da infra</h1>
+	<Banner>
+		<h1 class="text-center text-black font-[500] text-2xl mb-4">Portal da infra</h1>
 
-		<p class="text-center mb-14 text-gray-300 text-sm">
+		<p class="text-center mb-14 text-black-300 text-sm">
 			Conforto para o seu dia a dia, estilo
 			<br>
 			para o seu escritório.
 		</p>
 
 		<div class="w-full h-full flex flex-col gap-6 items-center px-[10%]">
-			<ButtonLink colorTextButton="text-black/80" nameButton="Nossos Produtos" redirectTo="/produtos" />
-			<ButtonLink colorTextButton="text-black/80" nameButton="Falar com consultor" />
+			<ButtonLink colorTextButton="text-black" nameButton="Nossos Produtos" redirectTo="/produtos" />
+			<ButtonLink colorTextButton="text-black" nameButton="Falar com consultor" />
 		</div>
 	</Banner>
 
