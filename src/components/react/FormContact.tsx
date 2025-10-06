@@ -90,7 +90,7 @@ function FormContact() {
           target="_blank"
           className="transition-transform hover:scale-[1.1]"
         >
-          <img src={"public/instagram.png"} alt="Logo instagram" />
+          <img src={"/instagram.png"} alt="Logo instagram" />
         </a>
 
         <a
@@ -98,11 +98,11 @@ function FormContact() {
           target="_blank"
           className="transition-transform hover:scale-[1.1]"
         >
-          <img src={"public/facebook.png"} alt="Logo Facebook" />
+          <img src={"/facebook.png"} alt="Logo Facebook" />
         </a>
 
         <a href="#" className="transition-transform hover:scale-[1.1]">
-          <img src={"public/whatsapp.png"} alt="Logo Whatsapp" />
+          <img src={"/whatsapp.png"} alt="Logo Whatsapp" />
         </a>
       </div>
 
