@@ -24,9 +24,10 @@ try {
         <div class="flex flex-col w-full md:flex-row-reverse md:items-start md:justify-between">
           <div class="flex flex-col md:w-[50%]">
             <div class="mb-[3rem]">
-              <h2 class="text-lg font-semibold">{produto.nome}</h2>
-              <h3 class="text-2xl">{produto.preco}</h3>
+              <h2 class="text-lg font-semibold md:text-right">{produto.nome}</h2>
+              <h3 class="text-2xl md:text-right">{produto.preco}</h3>
             </div>
+
             <div class="mb-[3rem]">
               {produto.imgProduto && produto.imgProduto.length > 0 ? (
                 <CarouselDemo listaImg={produto.imgProduto} client:only="react" />
@@ -35,7 +36,8 @@ try {
               )}
             </div>
           </div>
-          <div class="flex flex-col md:w-[40%] md:flex-col-reverse md:justify-between">
+
+          <div class="flex flex-col md:w-[40%] md:flex-col-reverse md:justify-between md:h-full">
             <div class="flex w-full max-w-[400px] rounded-lg bg-black mb-[2rem]">
               <ButtonLink nameButton="Falar com Consultor" redirectTo="#" />
             </div>
