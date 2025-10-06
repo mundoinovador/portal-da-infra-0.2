@@ -11,7 +11,6 @@ const { id } = Astro.params;
 let produto = null;
 try {
   produto = await buscarProdutoPorId(id);
-  console.log("Produto encontrado:", produto?.nome);
 } catch (error) {
   console.error("Erro ao carregar produto:", error);
 }
