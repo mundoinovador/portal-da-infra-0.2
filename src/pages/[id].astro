@@ -8,13 +8,17 @@ import { FormContact } from "@components/react/FormContact";
 import DescricaoProduto from "@components/react/DescricaoProduto";
 
 const { id } = Astro.params;
-const produto = await buscarProdutoPorId(id);
-console.log(produto?.imgProduto)
+let produto = null;
+try {
+  produto = await buscarProdutoPorId(id);
+  console.log("Produto encontrado:", produto?.nome);
+} catch (error) {
+  console.error("Erro ao carregar produto:", error);
+}
 ---
 
 <Base>
   <Header typeHeader="header-normal" />
-
   <main class="flex w-full justify-center px-[5%] py-[2rem] md:mb-[2rem]">
     <div class="flex w-full max-w-[2040px]">
       {produto ? (
@@ -24,32 +28,34 @@ console.log(produto?.imgProduto)
               <h2 class="text-lg font-semibold">{produto.nome}</h2>
               <h3 class="text-2xl">{produto.preco}</h3>
             </div>
-
             <div class="mb-[3rem]">
-              <CarouselDemo listaImg={produto.imgProduto || []} client:only="react" />
+              {produto.imgProduto && produto.imgProduto.length > 0 ? (
+                <CarouselDemo listaImg={produto.imgProduto} client:only="react" />
+              ) : (
+                <p>Imagens não disponíveis.</p>
+              )}
             </div>
           </div>
-
           <div class="flex flex-col md:w-[40%] md:flex-col-reverse md:justify-between">
-            <div class="flex w-full max-w-[400px] rounded-lg bg-black mb-[2rem] ">
-              <ButtonLink nameButton="Falar com Consultor" redirectTo="#"  />
+            <div class="flex w-full max-w-[400px] rounded-lg bg-black mb-[2rem]">
+              <ButtonLink nameButton="Falar com Consultor" redirectTo="#" />
             </div>
-
             <div>
               <p class="mb-4 font-semibold">Descrição:</p>
-              <DescricaoProduto descricao={produto.descricao} client:load />
+              {produto.descricao ? (
+                <DescricaoProduto descricao={produto.descricao} client:load />
+              ) : (
+                <p>Descrição não disponível.</p>
+              )}
             </div>
           </div>
         </div>
-
       ) : (
-        <p class="text-center text-gray-500">Produto não encontrado.</p>
+        <p class="text-center text-gray-500">Produto não encontrado ou indisponível.</p>
       )}
     </div>
   </main>
-
   <footer class="p-6 w-full flex justify-center">
     <FormContact />
   </footer>
-  
 </Base>
