@@ -2,7 +2,7 @@
 import Base from "@layouts/Base.astro";
 import Header from "@components/Header.astro";
 import FiltrosProdutos from "@components/react/FiltrosProdutos"
-import { FormContact } from "@components/react/FormContact";
+import ContatoSection from "@components/ContatoSection.astro";
 
 const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
 ---
@@ -16,7 +16,5 @@ const productSelect: string = Astro.url.searchParams.get('productSelect') || ""
         </div>
     </main>
 
-    <footer class="p-6 w-full flex justify-center">
-        <FormContact />
-    </footer>
+    <ContatoSection />
 </Base>

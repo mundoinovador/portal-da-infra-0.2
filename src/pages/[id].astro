@@ -4,8 +4,8 @@ import Base from "@layouts/Base.astro";
 import { CarouselDemo } from "@components/react/CarrosselProdutos";
 import { buscarProdutoPorId } from "src/lib/utils";
 import ButtonLink from "@components/ButtonLink.astro";
-import { FormContact } from "@components/react/FormContact";
 import DescricaoProduto from "@components/react/DescricaoProduto";
+import ContatoSection from "@components/ContatoSection.astro";
 
 const { id } = Astro.params;
 let produto = null;
@@ -57,7 +57,5 @@ try {
       )}
     </div>
   </main>
-  <footer class="p-6 w-full flex justify-center">
-    <FormContact />
-  </footer>
+  <ContatoSection />
 </Base>

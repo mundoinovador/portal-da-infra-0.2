@@ -196,7 +196,7 @@ const FiltrosProdutos = ({
       </div>
 
       {/* RELACIONADO AOS PRODUTOS EXIBIDOS */}
-      <div className="flex w-full flex-col justify-center items-center px-[10%] sm:w-fit md:px-[8%]">
+      <div className="relative flex w-full flex-col justify-center items-center px-[10%] sm:w-fit md:px-[8%]">
         {/* Precisa criar uma váriavel só para mostrar o titulo e uma função que muda a váriavel toda vez que muda o titulo */}
         {typeSelected ? (
           <h2 className="w-full text-left mb-[1rem] font-semibold text-lg">
@@ -209,7 +209,7 @@ const FiltrosProdutos = ({
           <span></span>
         )}
 
-        <div className="flex w-full flex-wrap gap-[2rem] mb-[4rem]">
+        <div className="flex w-full flex-wrap gap-[2rem] mb-[4rem] min-h-[60vh] items-center">
           {!loadding ? (
             produtos
               .slice(0, visibleCount)
@@ -225,8 +225,8 @@ const FiltrosProdutos = ({
                 />
               ))
           ) : (
-            <div className="flex w-full justify-center">
-              <div className="w-[4rem] h-[4rem] border-4 border-gray-200 border-t-gray-400 rounded-full animate-spin my-[6rem]"></div>
+            <div className="flex w-[100vw] absolute left-0 justify-center">
+              <div className="w-[4rem] h-[4rem] border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin my-[6rem]"></div>
             </div>
           )}
         </div>

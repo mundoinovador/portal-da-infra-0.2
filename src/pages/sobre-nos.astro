@@ -2,6 +2,7 @@
 import Base from "@layouts/Base.astro";
 import Banner from "@components/Banner.astro";
 import Historia from "@components/Historia.astro";
+import ContatoSection from "@components/ContatoSection.astro";
 
 interface itemDaHistoria {
 	titulo: string,
@@ -61,4 +62,6 @@ const itensDaHistoria: itemDaHistoria[] = [
 			))
 		}
     </main>
+
+	<ContatoSection />
 </Base>
