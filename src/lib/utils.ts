@@ -97,6 +97,13 @@ export async function listarTodosProdutos(): Promise<Dados[]> {
   return res.json();
 }
 
+// utils/formatStringToHTML.ts
+export function formatStringToHTML(input: string): string {
+  const boldText = input.replace(/\[([^\]]+)\]/g, "<b>$1</b>");
+  const withLineBreaks = boldText.replace(/;/g, "<br>");
+  return withLineBreaks;
+}
+
 // 2) LISTAR POR CATEGORIA (sem alterações)
 export async function listarPorCategoria(categoria: string): Promise<Dados[]> {
   const produtos = await listarTodosProdutos();
