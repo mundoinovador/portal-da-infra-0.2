@@ -12,7 +12,7 @@ export function CardProduct({
   idProduct,
 }: parametrosCard) {
   return (
-    <div className="flex flex-col justify-end items-center w-full h-[70vh] shadow border rounded-md md:max-w-[360px] hover:cursor-pointer transition-transform hover:scale-[1.01]">
+    <div className="flex flex-col justify-end items-center w-full max-w-[360px] h-[70vh] shadow border rounded-md md:max-w-[360px] hover:cursor-pointer transition-transform hover:scale-[1.01]">
       <img src={imgCapa} className="rounded-md w-[55%] py-6" />
 
       <div
