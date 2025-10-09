@@ -1,58 +1,28 @@
 ---
 const styleHeaderLink = 'text-sm links border-b border-transparent px-2 transition-all duration-300 hover:border-b-black text-black'
-const styleHeaderLinkNormal = 'text-sm border-b border-transparent px-2 transition-all duration-300 hover:border-b-black text-black'
-const {typeHeader} = Astro.props
 ---
 
 <script>
     const header:any = document.querySelector('header');
-    const linkNav:any = document.querySelectorAll('.links');
-    const imgHeaderFull:any = document.querySelector('#img-header-full')
 
     window.addEventListener('scroll', () => {
     if (window.scrollY < 100) {
         header.classList.remove('bg-white');
-
-        linkNav.forEach(() => {
-
-        imgHeaderFull.src = "/logo-sem-texto.png"
-        });
     } else {
         header.classList.add('bg-white');
-
-        linkNav.forEach(() => {
-
-        imgHeaderFull.src = "/logo.png"
-        });
     }
     });
 </script>
 
-{
-    typeHeader != 'header-normal' ? (
-        <header class="flex justify-between items-center px-[5%] py-4 sticky top-0 transition-colors duration-500">
-            <a href="/" class="flex w-20 transition-transform duration-300 hover:scale-115">
-                <img src='/logo-sem-texto.png' class="w-full md:w-[90%]" id="img-header-full" />
-            </a>
+<header class="z-10 border-b border-b-gray-200 flex justify-between items-center px-[5%] py-4 sticky top-0 transition-colors duration-500">
+    <a href="/" class="flex w-15 transition-transform duration-300 hover:scale-115">
+        <img src='/logo-sem-texto.png' class="w-full md:w-[90%]" id="img-header-full" />
+    </a>
 
-            <nav class="flex gap-2">
-                <a href="/" class={styleHeaderLink}>Home</a>
-                <a href="/produtos" class={styleHeaderLink}>Produtos</a>
-                <a href="/contatos" class={styleHeaderLink}>Contatos</a>
-            </nav>
-        </header>
-    ) : (
-        <header class="bg-white flex justify-between items-center px-[5%] py-[1.5rem]">
-            <a href="/" class="flex w-[5rem] transition-transform duration-300 hover:scale-115">
-                <img src='/logo.png' class="w-full md:w-[200%]" />
-            </a>
-
-            <nav class="flex gap-2">
-                <a href="/" class={styleHeaderLinkNormal}>Home</a>
-                <a href="/produtos" class={styleHeaderLinkNormal}>Produtos</a>
-                <a href="/contatos" class={styleHeaderLinkNormal}>Contatos</a>
-            </nav>
-        </header>
-    )
-}
+    <nav class="flex gap-2">
+        <a href="/" class={styleHeaderLink}>Home</a>
+        <a href="/produtos" class={styleHeaderLink}>Produtos</a>
+        <a href="/contatos" class={styleHeaderLink}>Contatos</a>
+    </nav>
+</header>
 

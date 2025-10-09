@@ -1,18 +1,64 @@
 ---
 import Base from "@layouts/Base.astro";
 import Banner from "@components/Banner.astro";
+import Historia from "@components/Historia.astro";
+
+interface itemDaHistoria {
+	titulo: string,
+	descricao: string
+}
+
+const itensDaHistoria: itemDaHistoria[] = [
+	{
+		titulo: "O Início de Uma Visão",
+		descricao: "A nossa trajetória começou em 2014, e não foi por acaso. Enquanto o mercado via o encerramento de atividades de algumas empresas, nós enxergamos uma oportunidade única e, mais importante, uma missão."
+	},
+
+	{
+		titulo: "Uma Missão Clara",
+		descricao: "Essa missão era clara: transformar o que seria descartado em valor."
+	},
+
+	{
+		titulo: "Fundação e Foco Estratégico",
+		descricao: "Ao invés de aceitar o fim da vida útil desses ativos, dedicamos nossa fundação à compra estratégica de móveis usados. Nosso foco não estava no 'usado', mas no potencial inexplorado de cada peça."
+	},
+
+	{
+		titulo: "Restauração e Crescimento",
+		descricao: "Com um trabalho meticuloso de restauração e reforma, o Portal da Infra nasceu e prosperou. Cada móvel revendido não é apenas uma transação, mas um ato de sustentabilidade e reaproveitamento que impacta positivamente o meio ambiente."
+	},
+
+	{
+		titulo: "Crescimento e Reconhecimento",
+		descricao: "Em apenas onze anos, essa visão — que combina responsabilidade ambiental com qualidade e design — nos fez crescer exponencialmente. Hoje, somos um grande nome no mercado de móveis novos e seminovos."
+	},
+
+	{
+		titulo: "Ética e Sustentabilidade",
+		descricao:"Provar que é possível construir um negócio de sucesso e ser uma referência a partir da ética, da inteligência de mercado e do compromisso com um futuro mais sustentável."
+	}
+
+]
 ---
 
 <Base title="Sobre nós">
     <Banner heightBanner="60vh">
-		<h1 class="text-center text-white font-[500] text-2xl mb-4">História até aqui</h1>
+        <h1 class="text-center text-black font-[500] text-2xl mb-4">História até aqui</h1>
+        <p class="text-center mb-14 text-gray-800 text-sm">
+            Conheça tudo que fizemos até aqui.
+            <br>
+            conheça os desafios superados, as decisões tomadas
+            <br>
+            e o que representamos para uma empresa. Aproveite a nossa apresentação.
+        </p>
+    </Banner>
 
-			<p class="text-center mb-14 text-gray-300 text-sm">
-				Conheça tudo que fizemos até aqui.
-				<br>
-                conheça os desafios superados, as decisões tomadas
-                <br>
-                e oque representamos para uma empresa, aproveite a nossa apresentação..
-			</p>
-	</Banner>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+		{
+			itensDaHistoria.map((item, index) => (
+				<Historia titulo={item.titulo} descricao={item.descricao} key={index} />
+			))
+		}
+    </main>
 </Base>

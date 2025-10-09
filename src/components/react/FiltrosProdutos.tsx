@@ -36,6 +36,7 @@ const FiltrosProdutos = ({
   const [visibleCount, setVisibleCount] = React.useState<number>(9);
 
   const [mostrarSelect, setMostrarSelect] = React.useState<boolean>(true);
+  const [loadding, setLoadding] = React.useState<boolean>(true);
   const increment = 5;
 
   async function carregarProdutos(categoria: string) {
@@ -44,9 +45,11 @@ const FiltrosProdutos = ({
         setTypeSelected(categoria);
         const produtosApi: Dados[] = await listarPorCategoria(categoria);
         setProdutos(produtosApi);
+        setLoadding(false);
       } else {
         const produtosApi: Dados[] = await listarTodosProdutos();
         setProdutos(produtosApi);
+        setLoadding(false);
       }
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -193,7 +196,7 @@ const FiltrosProdutos = ({
       </div>
 
       {/* RELACIONADO AOS PRODUTOS EXIBIDOS */}
-      <div className="flex flex-col justify-center items-center px-[10%] w-fit md:px-[8%]">
+      <div className="flex w-full flex-col justify-center items-center px-[10%] sm:w-fit md:px-[8%]">
         {/* Precisa criar uma váriavel só para mostrar o titulo e uma função que muda a váriavel toda vez que muda o titulo */}
         {typeSelected ? (
           <h2 className="w-full text-left mb-[1rem] font-semibold text-lg">
@@ -206,25 +209,39 @@ const FiltrosProdutos = ({
           <span></span>
         )}
 
-        <div className="flex flex-wrap gap-[2rem] mb-[4rem]">
-          {produtos.slice(0, visibleCount).map((produto: Dados, index) => (
-            <CardProduct
-              key={index}
-              nome={produto.nome}
-              preco={produto.preco}
-              imgCapa={produto.imgCapa}
-              idProduct={produto._id != undefined ? String(produto._id) : ""}
-            />
-          ))}
+        <div className="flex w-full flex-wrap gap-[2rem] mb-[4rem]">
+          {!loadding ? (
+            produtos
+              .slice(0, visibleCount)
+              .map((produto: Dados, index) => (
+                <CardProduct
+                  key={index}
+                  nome={produto.nome}
+                  preco={produto.preco}
+                  imgCapa={produto.imgCapa}
+                  idProduct={
+                    produto._id != undefined ? String(produto._id) : ""
+                  }
+                />
+              ))
+          ) : (
+            <div className="flex w-full justify-center">
+              <div className="w-[4rem] h-[4rem] border-4 border-gray-200 border-t-gray-400 rounded-full animate-spin my-[6rem]"></div>
+            </div>
+          )}
         </div>
 
-        {visibleCount < produtos.length && (
-          <button
-            onClick={handleShowMore}
-            className="bg-white text-black border border-black text-center cursor-pointer text-xs md:text-sm font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition-transform duration-300 hover:scale-[1.05] hover:bg-black hover:text-white mb-[4rem]"
-          >
-            Mostrar mais
-          </button>
+        {!loadding ? (
+          visibleCount < produtos.length && (
+            <button
+              onClick={handleShowMore}
+              className="bg-white text-black border border-black text-center cursor-pointer text-xs md:text-sm font-[500] w-full max-w-[400px] h-fit py-4 rounded-md transition-transform duration-300 hover:scale-[1.05] hover:bg-black hover:text-white mb-[4rem]"
+            >
+              Mostrar mais
+            </button>
+          )
+        ) : (
+          <span></span>
         )}
       </div>
     </div>
