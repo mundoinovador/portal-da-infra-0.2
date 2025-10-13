@@ -52,10 +52,8 @@ const categorias: Array<Categoria> = [
     itens: [
       { title: "Preço", nome: "preco" },
       { title: "Popular", nome: "popular" },
-      { title: "Armários Altos", nome: "armarios-altos" },
-      { title: "Armários baixos", nome: "armarios-baixo" },
+      { title: "Armários de madeira", nome: "armarios-madeira" },
       { title: "Armário de aço", nome: "armario-de-aco" },
-      { title: "Roupeiro de aço", nome: "roupeiro-de-aco" },
     ],
   },
   {

@@ -28,8 +28,12 @@ export const FilterInserir: React.FC<myComponentProps> = ({ itemHome }) => {
   const [img3Produto, setImg3Produto] = React.useState("");
 
   function ajustarStringPreco() {
-    const novoPreco = `R$ ${precoProduto.toString()},00`;
-    return novoPreco;
+    if (precoProduto) {
+      const novoPreco = `R$ ${precoProduto.toString()},00`;
+      return novoPreco;
+    }
+
+    return "Sob consulta";
   }
 
   async function saveProdutos() {
