@@ -62,7 +62,7 @@ export const GET: APIRoute = async ({ request }) => {
     console.error("Erro na API:", error);
     return new Response(
       JSON.stringify({
-        error: "Erro ao buscar produtos",
+        error: "Erro na resposta",
         details: error instanceof Error ? error.message : "Unknown error",
       }),
       {
