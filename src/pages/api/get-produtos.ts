@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 const uri = import.meta.env.MONGODB_URI;
+console.log(uri);
 if (!uri) {
   throw new Error("URI do MongoDB não configurada");
 }
